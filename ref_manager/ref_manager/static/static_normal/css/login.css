@@ -115,3 +115,10 @@ body {
   overflow: hidden;  
 }
 
+.span9 {
+  padding-top: 60px;
+  font-family: 'Hind';
+  font-size: 80px;
+  text-align: center;
+  vertical-align: center;
+}
