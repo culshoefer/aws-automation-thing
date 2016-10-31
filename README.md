@@ -55,3 +55,4 @@ http://nvie.com/files/Git-branching-model.pdf
 - Keep security in mind:
   - Restrict root access to range of IP addresses
   - Explore AWS options
+- Brownie points: Advanced architecture with private network + vpn gateway etc.
