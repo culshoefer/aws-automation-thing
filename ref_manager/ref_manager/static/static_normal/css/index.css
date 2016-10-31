@@ -6,6 +6,7 @@ body, html {
   color: #5a5a5a;
   max-width: 100%;
   overflow-x: hidden;
+  overflow-y: hidden;
   padding-right: 0px;
   position: relative;
   min-height: 100%;
@@ -27,8 +28,9 @@ a:visited {
 	color: #D6D5C9;
 }
 
-a:hover {
-	color: #D6D5C9;
+#lil_thing {
+	color: #D6D5C9 !important;
+  text-decoration: none !important;
 }
 
 .footer {
