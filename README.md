@@ -56,3 +56,6 @@ http://nvie.com/files/Git-branching-model.pdf
   - Restrict root access to range of IP addresses
   - Explore AWS options
 - Brownie points: Advanced architecture with private network + vpn gateway etc.
+
+## Sharing resources between accounts in AWS
+http://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html
