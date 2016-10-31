@@ -19,7 +19,7 @@ https://moodle.ucl.ac.uk/pluginfile.php/3127075/mod_resource/content/3/comp204p-
 3. Script deployment of app to servers
 4. Support automatic restart if the server crsahes/restarts
 5. Devise a way to backup/restore DB on production server
-   -> Find out ways to backup the data (every two hours etc)
+   - Find out ways to backup the data (every two hours etc)
    - Store multiple versions since DB may be corrupted
 
 ## Development platform
@@ -42,3 +42,8 @@ http://nvie.com/posts/a-successful-git-branching-model/
 http://nvie.com/files/Git-branching-model.pdf
 
 --> Build independent of IDE (use build tool like maven/gradle/~~~~)
+
+## Things to take note of
+- Changing IP addresses
+- Only spin up VMs when needed, use cheapest conf + monitor it
+- Only use one zone OR be beware of shutdowns if using multiple zones
