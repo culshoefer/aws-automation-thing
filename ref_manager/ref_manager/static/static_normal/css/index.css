@@ -164,3 +164,8 @@ a:hover {
 .col-md-4 {
   text-align: center;
 }
+
+#home_icon {
+  width: 90px;
+  height: auto;
+}
