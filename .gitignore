@@ -42,3 +42,6 @@ flycheck_*.el
 
 # projectiles files
 .projectile
+
+db.sqlite3
+*.pyc
