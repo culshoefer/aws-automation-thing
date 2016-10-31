@@ -1,6 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
 
-<html>
+<html class="no-js" lang="">
 	<head>
 		<title>{% block title %}Title{% endblock %}</title>
 
@@ -8,54 +9,45 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+    	<link rel="stylesheet" href="{% static 'css/index.css' %}">
     	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    	<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
 
     	{% block more_links %}{% endblock %}
 	</head>
 
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top">
-  		<div class="container-fluid">
-    	<!-- Brand and toggle get grouped for better mobile display -->
-    		<div class="navbar-header">
-      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        		<span class="sr-only">Toggle navigation</span>
-        		<span class="icon-bar"></span>
-        		<span class="icon-bar"></span>
-        		<span class="icon-bar"></span>
-      		</button>
-      		<a class="navbar-brand" href="">
-        		<img src="{% static "images/logo.png" %}" alt="logo" width="20px" height="20px" id="little_logo"/>
-      		</a>
-    		</div>
+  			<div class="container-fluid">
+	    		<div class="navbar-header">
+		      		<a class="navbar-brand" href="{% url 'references' %}">
+		      			<
+		      		</a>
+	    		</div>
+	    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      		<ul class="nav navbar-nav">
+		      		</ul>
+	    		</div>
+  			</div>
+    	</nav>
 
-    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      		<ul class="nav navbar-nav">
-	        		<li>
-	        			<a href="">references<span class="sr-only">(current)</span></a>
-	        		</li>
-	      		</ul>
-    		</div>
-  		</div>
-    </nav>
+    	{% block main_content %}{% endblock %}
 
+	    <footer class="footer">
+	      <div class="footer navbar-fixed-bottom">
+	        <div id="footer_box">
+	          <p class="text-muted">made with love by group c</p>
+	        </div>
+	      </div>
+	    </footer>
 
-    <footer class="footer">
-      <div class="footer navbar-fixed-bottom">
-        <div id="footer_box">
-          <p class="text-muted">made with love by group c</p>
-        </div>
-      </div>
-    </footer>
+	    <script src="http://code.jquery.com/jquery.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-
-    {% block more_scripts %}{% endblock %}
+	    {% block more_scripts %}{% endblock %}
 
 	</body>
-	
+
 </html>
