@@ -3,7 +3,7 @@
 
 <html class="no-js" lang="">
 	<head>
-		<title>{% block title %}Title{% endblock %}</title>
+		<title>{% block title %}{% endblock %}</title>
 
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +36,8 @@
 	    <footer class="footer">
 	      <div class="footer navbar-fixed-bottom">
 	        <div id="footer_box">
-	          <p class="text-muted">made with love by group c</p>
+	          <p class="text-muted">
+	          	<a href="{% url 'group' %}">made with love by group c</a></p>
 	        </div>
 	      </div>
 	    </footer>
