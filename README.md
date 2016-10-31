@@ -47,3 +47,11 @@ http://nvie.com/files/Git-branching-model.pdf
 - Changing IP addresses
 - Only spin up VMs when needed, use cheapest conf + monitor it
 - Only use one zone OR be beware of shutdowns if using multiple zones
+- Use DB + service on same server
+
+## Actual setup
+- EC2 Amazon Linux
+- Creation and configuration of server should be scripted
+- Keep security in mind:
+  - Restrict root access to range of IP addresses
+  - Explore AWS options
