@@ -40,3 +40,12 @@ Design straightforward web app (simple citation store)
 **QUICKLY BUILD THE WEBAPP**
 ## Webapp spec
 https://moodle.ucl.ac.uk/pluginfile.php/3127075/mod_resource/content/3/comp204p-sw1-spec.pdf
+
+Goals:
+1. Configure staging and production server
+2. Create webapp with basic spec including DB
+3. Script deployment of app to servers
+4. Support automatic restart if the server crsahes/restarts
+5. Devise a way to backup/restore DB on production server
+   -> Find out ways to backup the data (every two hours etc)
+   - Store multiple versions since DB may be corrupted
