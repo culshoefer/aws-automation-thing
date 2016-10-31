@@ -1,0 +1,54 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}login{% endblock title %}
+
+{% block more_links %}
+ <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock more_links %}
+
+{% block main_content %}
+<ul class="tab-group">
+    <li class="tab active"><a href="#signup">Sign Up</a></li>
+    <li class="tab"><a href="#login">Log In</a></li>
+</ul>
+
+ <div class="login-page"></div>
+     <div class="form">
+       <form>
+          <div class = "top-row">
+			<div class = "field-wrap">
+				<label>
+					First Name<span class="req">*</span>
+				</label>
+				<input type="text" required autocomplete="off" />
+			</div>
+			<div class = "field-wrap">
+				<label>
+                	Last Name<span class="req">*</span>
+           	 	</label>
+              	<input type="text"required autocomplete="off"/>
+            </div>
+        </div>
+        <div class="field-wrap">
+            <label>
+            	Email Address<span class="req">*</span>
+            </label>
+            <input type="email" required autocomplete="off"/>
+        </div>
+        <div class="field-wrap">
+            <label>
+            	Set A Password<span class="req">*</span>
+            </label>
+            <input type="password" required autocomplete="off"/>
+        </div>
+          <button>sign up</button>
+       </form>
+     </div>
+ </div>
+{% endblock main_content %}
+
+{% block more_scripts %}
+
+{% endblock more_scripts %}

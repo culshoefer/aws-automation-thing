@@ -113,3 +113,9 @@ def edit_reference(request):
 
     reference.save()
     return JsonResponse({'refid': reference.id})
+
+def signup(request):
+	return render(request, 'signup.html')
+
+def group(request):
+	return render(request, 'group.html')
