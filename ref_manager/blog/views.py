@@ -7,10 +7,17 @@ from .models import Reference
 def login(request):
     return render(request, 'login.html')
 
+def references_page(request):
+    return render(request, 'references.html')
+
+def signup(request):
+	return render(request, 'signup.html')
+
+def group(request):
+	return render(request, 'group.html')
 
 def home(request):
     return render(request, 'references.html')
-
 
 """ Handles /references """
 def references(request):
