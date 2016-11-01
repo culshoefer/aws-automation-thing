@@ -14,16 +14,16 @@ $(document).ready(function() {
   $rows.each(function () {
     var $td = $(this).find('td');
     var h = {};
-    
+
     // Use the headers from earlier to name our hash keys
     headers.forEach(function (header, i) {
-      h[header] = $td.eq(i).text();   
+      h[header] = $td.eq(i).text();
     });
-    
+
     data.push(h);
   });
     */
-    
+
   var references = [];
 
   function getReferences(success, error) {
@@ -40,7 +40,7 @@ $(document).ready(function() {
   function overwriteReferences(referenceData) {
     references = referenceData;
     clearAllReferences();
-    for(int i = 0; i < referenceData.length; i++) {
+    for(var i = 0; i < referenceData.length; i++) {
       var reference = referenceData[i];
       addReferenceToUI(reference);
     }
