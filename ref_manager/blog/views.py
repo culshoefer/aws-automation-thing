@@ -1,11 +1,28 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 import json
 from .models import Reference
-
+from django.contrib.auth import login, authenticate
 
 def login(request):
     return render(request, 'login.html')
+
+
+def authenticate(request):
+    if request.method == 'POST':
+        login_credentials = json.loads(request.body.decode())
+        try:
+            username = login_credentials["username"]
+            password = login_credentials["password"]
+        except KeyError:
+            return JsonResponse({"error": "login credentials not given"})
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            login(username, password)
+            return HttpResponseRedirect('/references')
+    return JsonResponse({"error": "Wrong username and password"})
 
 
 def home(request):
