@@ -38,6 +38,7 @@ $(document).ready(function() {
       $('.table-remove').click(function () {
         var refid = getRefIdFromRowElement($(this));
         deleteReferenceOnServer(refid);
+        $(this).parents('tr').detach();
       });
 
     /*  // Turn all existing rows into a loopable array
@@ -116,6 +117,7 @@ $(document).ready(function() {
     var notes = $clone.find("td:nth-child(3)");
     notes.text(reference.notes);
     $TABLE.find('table').append($clone);
+    addblureventhandlertorow($clone);
   }
 
   function updateReferences() {
@@ -155,7 +157,6 @@ $(document).ready(function() {
           data: JSON.stringify(sendObj),
           success: function(data) {
             deleteReference(refid);
-            $(this).parents('tr').detach();
           }
       });
   }
@@ -180,7 +181,7 @@ $(document).ready(function() {
     reference["notes"] = "";
     $.ajax({
       type: "PUT",
-      url: "/referenes",
+      url: "/references",
       data: JSON.stringify(reference),
       success: function(newRefIdObj) {
         newRefId = newRefIdObj["refid"];
@@ -195,7 +196,7 @@ $(document).ready(function() {
   function updateReferenceOnServer(reference) {
     $.ajax({
       type: "POST",
-      url: "/referenes",
+      url: "/references",
       data: JSON.stringify(reference),
       success: function() {
         //nothing needs to happen here.
@@ -204,21 +205,23 @@ $(document).ready(function() {
   }
 
   function addblureventhandler(td) {
-    td.blur(function (e) {
-      updateReferenceEverywhere(td.parents('tr'));
+    var timer = null;
+    td.keyup(function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          updateReferenceEverywhere(td.parents('tr'));
+        }, 600);
     });
   }
 
-  //overwriteReferences(references);
-  $rows = $TABLE.find('tr:not(:hidden)');
-  $rows.each(function () {
-    var title = $(this).find("td:nth-child(1)");
-    var link = $(this).find("td:nth-child(2)");
-    var notes = $(this).find("td:nth-child(3)");
+  function addblureventhandlertorow(row) {
+    var title = row.find("td:nth-child(1)");
+    var link = row.find("td:nth-child(2)");
+    var notes = row.find("td:nth-child(3)");
     addblureventhandler(title);
     addblureventhandler(link);
     addblureventhandler(notes);
-  });
+  };
 
   updateReferences();
 });
