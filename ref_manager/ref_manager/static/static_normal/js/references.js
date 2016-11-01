@@ -1,30 +1,62 @@
 $(document).ready(function() {
     var $TABLE = $('#table');
+    var $TEMPLATE_ROW = $TABLE.find('tr.hide');
+    var references = [{
+      "title": "first title",
+      "link": "first.link",
+      "notes": "This is the first reference",
+      "refid": "alk;1mkl;m"
+    }, {
+      "title": "second title",
+      "link": "second.link",
+      "notes": "This is the second reference",
+      "refid": "kl1m;lm2"
 
-    $('.table-add').click(function () {
-	var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
-	$TABLE.find('table').append($clone);
-    });
+    }];
 
-    $('.table-remove').click(function () {
-	$(this).parents('tr').detach();
-    });
+      $('.table-add').click(addReferenceToServer);
+      $('.table-remove').click(function () {
+        var refid = getRefIdFromRowElement($(this));
+        deleteReferenceOnServer(refid);
+      });
 
-/*  // Turn all existing rows into a loopable array
-  $rows.each(function () {
-    var $td = $(this).find('td');
-    var h = {};
+    /*  // Turn all existing rows into a loopable array
+      $rows.each(function () {
+        var $td = $(this).find('td');
+        var h = {};
 
-    // Use the headers from earlier to name our hash keys
-    headers.forEach(function (header, i) {
-      h[header] = $td.eq(i).text();
-    });
+        // Use the headers from earlier to name our hash keys
+        headers.forEach(function (header, i) {
+          h[header] = $td.eq(i).text();
+        });
 
-    data.push(h);
-  });
-    */
+        data.push(h);
+      });
+        */
 
-  var references = [];
+  function getRefIdFromRowElement(td) {
+    return td.parents('tr').attr("refid");
+  }
+
+  function addBlurEventHandler(tableCell) {
+    var refid = getRefIdFromRowElement(tableCell);
+  }
+
+  function updateReferenceEverywhere(trOfReference) {
+    currRef = {};
+    currRef["refid"] = trOfReference.attr("refid");
+    currRef["title"] = trOfReference.find("td:nth-child(1)").text();
+    currRef["link"] = trOfReference.find("td:nth-child(2)").text();
+    currRef["notes"] = trOfReference.find("td:nth-child(3)").text();
+    var ind = getReferencePositionFromId(currRef["refid"]);
+    if(ind != -1) {
+      var oldRef = references[ind];
+      oldRef["title"] = currRef["title"];
+      oldRef["link"] = currRef["link"];
+      oldRef["notes"] = currRef["notes"];
+    }
+    updateReferenceOnServer(currRef);
+  }
 
   function getReferences(success, error) {
     $.get( "/references/", function(rawData) {
@@ -51,9 +83,20 @@ $(document).ready(function() {
     //we don't have the DOM done yet, so just simulate htis TODO
   }
 
+  function getEditableTableRow() {
+    return $("<td contenteditable='true'></td>");
+  }
+
   function addReferenceToUI(reference) {
-    console.log(JSON.stringify(reference));
-    //we don't have the DOM done yet, so just print elements TODO
+    var $clone = $TEMPLATE_ROW.clone(true).removeClass('hide table-line');
+    $clone.attr("refid", reference.refid);
+    var title = $clone.find("td:nth-child(1)");
+    title.text(reference.title);
+    var link = $clone.find("td:nth-child(2)");
+    link.text(reference.link);
+    var notes = $clone.find("td:nth-child(3)");
+    notes.text(reference.notes);
+    $TABLE.find('table').append($clone);
   }
 
   function updateReferences() {
@@ -61,7 +104,7 @@ $(document).ready(function() {
   }
 
 
-  function deleteReference(redid) {
+  function deleteReference(refid) {
     var ind = getReferencePositionFromId(refid);
     if(ind != -1) {
       references.splice(ind, 1);
@@ -71,7 +114,8 @@ $(document).ready(function() {
   function getReferencePositionFromId(refid) {
     var ind = -1;
     var arr = $.grep(references, function(elem, index) {
-      if(refid.equals(elem.refid)) {
+      console.log(JSON.stringify(elem));
+      if(refid === elem.refid) {
         ind = index;
         return true;
       } else {
@@ -93,7 +137,7 @@ $(document).ready(function() {
           data: JSON.stringify(sendObj),
           success: function(data) {
             deleteReference(refid);
-            overwriteReferences(references);
+            $(this).parents('tr').detach();
           }
       });
   }
@@ -114,9 +158,9 @@ $(document).ready(function() {
   //PUT
   function addReferenceToServer() {
     var reference = {};
-    reference["title"] = "testtitle";
-    reference["link"] = "http://google.com";
-    reference["notes"] = "Some reference thing";
+    reference["title"] = "";
+    reference["link"] = "";
+    reference["notes"] = "";
     $.ajax({
       type: "PUT",
       url: "/referenes/",
@@ -125,29 +169,51 @@ $(document).ready(function() {
         newRefId = JSON.parse(newRefIdStr)["refid"];
         reference["refid"] = newRefId;
         references.push(reference);
-        overwriteReferences(references);
+        addReferenceToUI(reference);
       }
     });
   }
 
   //POST
-  function updateReferenceOnServer() {
-    var reference = {};
-    reference["title"] = "testtitle";
-    reference["link"] = "http://google.com";
-    reference["notes"] = "Some reference thing";
-    reference["refid"] = "alsfmaselm13";
+  function updateReferenceOnServer(reference) {
     $.ajax({
       type: "POST",
       url: "/referenes/",
       data: JSON.stringify(reference),
       success: function() {
-        deleteReference(refid);
-        references.push(reference);
-        overwriteReferences(references);
+        //nothing needs to happen here.
       }
     });
   }
 
-  updateReferences();
+  overwriteReferences(references);
+  $table
+  var i,j;
+  for(i = 0; i < )
+    row;
+    title;
+    link;
+    notes;
+    refid;
+    reference;
+    td.blur(function(e) {
+      updateReferenceEverywhere(
+        td.parents('tr'));
+    });
+  /*
+  For row in rows:
+    For td in row:
+      addblureventhandler(function(e) {
+        var refid = $(this).parents('tr').attr("refid");
+
+        refid = getRefId();
+        reference = collectReferenceData();
+        updateReferenceOnServer(reference);
+      });
+
+
+  */
+
+
+  //updateReferences();
 });
