@@ -4,6 +4,7 @@ import json
 from .models import Reference
 from django.contrib.auth import login, authenticate
 from .forms import LoginForm
+from django.views.decorators.csrf import csrf_exempt
 
 
 def login_request(request):
@@ -32,21 +33,23 @@ def home(request):
     return render(request, 'references.html')
 
 
+@csrf_exempt
 def references(request):
     """ Handles /references """
     if request.method == 'GET':
         return get_references(request)
 
-    elif request.method == 'POST':
-        return create_reference(request)
-
     elif request.method == 'DELETE':
         return delete_reference(request)
 
-    elif request.method == 'PUT':
+    elif request.method == 'POST':
         return edit_reference(request)
 
+    elif request.method == 'PUT':
+        return create_reference(request)
+
     else:
+        print("invalid request")
         return JsonResponse({'error': 'Invalid request'})
 
 
@@ -63,15 +66,15 @@ def get_references(request):
         return JsonResponse({'error': 'User not authenticated'})
 
     result = {'error': None, 'data': []}
-    for reference in references:
+    for reference in references.values():
         result['data'].append({
-            'title': reference.title,
-            'link': reference.link,
-            'notes': reference.notes,
-            'refid': reference.id
+            'title': reference['title'],
+            'link': reference['link'],
+            'notes': reference['notes'],
+            'refid': reference['id']
         })
 
-    return JsonResponse(references, safe=False)
+    return JsonResponse(result)
 
 
 def delete_reference(request):
@@ -99,6 +102,7 @@ def create_reference(request):
     """
 
     data = json.loads(request.body.decode())
+    print(data)
     try:
         ref = Reference(
                 title=data['title'],
