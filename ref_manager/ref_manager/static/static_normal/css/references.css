@@ -1,6 +1,8 @@
-@import "compass/css3";
-
+/*@import "compass/css3";*/
 .table-editable {
+  margin-top: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
   position: relative;
   
   .glyphicon {
@@ -14,15 +16,6 @@
   
   &:hover {
     color: #f00;
-  }
-}
-
-.table-up, .table-down {
-  color: #007;
-  cursor: pointer;
-  
-  &:hover {
-    color: #00f;
   }
 }
 
