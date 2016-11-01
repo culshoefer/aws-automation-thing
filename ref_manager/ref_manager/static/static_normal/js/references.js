@@ -10,10 +10,8 @@ $(document).ready(function() {
 	$(this).parents('tr').detach();
     });
 
-
-    /*    
-    // Turn all existing rows into a loopable array
-    $rows.each(function () {
+/*  // Turn all existing rows into a loopable array
+  $rows.each(function () {
     var $td = $(this).find('td');
     var h = {};
     
