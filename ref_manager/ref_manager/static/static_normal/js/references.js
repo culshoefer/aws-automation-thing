@@ -1,5 +1,43 @@
 $(document).ready(function() {
+    var $TABLE = $('#table');
+
+    $('.table-add').click(function () {
+	var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
+	$TABLE.find('table').append($clone);
+    });
+
+    $('.table-remove').click(function () {
+	$(this).parents('tr').detach();
+    });
+
+
+    /*    
+    // Turn all existing rows into a loopable array
+    $rows.each(function () {
+    var $td = $(this).find('td');
+    var h = {};
+    
+    // Use the headers from earlier to name our hash keys
+    headers.forEach(function (header, i) {
+      h[header] = $td.eq(i).text();   
+    });
+    
+    data.push(h);
+  });
+    */
+    
   var references = [];
+
+  function getReferences(success, error) {
+    $.get( "/references/", function(rawData) {
+      if(rawData.error && rawData.error != null) {
+        error(rawData.error);
+      } else {
+        success(rawData.data);
+      }
+    })
+    .fail(error);
+  }
 
   function overwriteReferences(referenceData) {
     references = referenceData;

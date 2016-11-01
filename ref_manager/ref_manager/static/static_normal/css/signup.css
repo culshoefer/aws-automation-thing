@@ -48,12 +48,12 @@
 
 .form .message {
   margin: 15px 0 0;
-  color: #b3b3b3;
+  color: #022F40;
   font-size: 12px;
 }
 
 .form .message a {
-  color: #4CAF50;
+  color: #2E6171;
   text-decoration: none;
 }
 
@@ -106,15 +106,15 @@ body {
   font-family: 'Hind';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;  
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-.span9 {
-  vertical-align: center;
+  overflow: visible;  
 }
 
 #title {
-  padding-top: 60px;
+  padding-top: 30px;
+}
+
+#form_title {
+  font-family: 'Hind';
+  font-size: 30px;
+  padding-bottom: 10px;
 }

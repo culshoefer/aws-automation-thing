@@ -5,10 +5,15 @@
 body, html {
   color: #5a5a5a;
   max-width: 100%;
-  overflow-x: hidden;
   padding-right: 0px;
   position: relative;
   min-height: 100%;
+}
+
+#title {
+  font-family: 'Hind';
+  font-size: 80px;
+  text-align: center;
 }
 
 .text-muted {
@@ -27,8 +32,9 @@ a:visited {
 	color: #D6D5C9;
 }
 
-a:hover {
-	color: #D6D5C9;
+#lil_thing {
+	color: #D6D5C9 !important;
+  text-decoration: none !important;
 }
 
 .footer {
