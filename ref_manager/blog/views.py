@@ -3,16 +3,15 @@ from django.http import JsonResponse, HttpResponseRedirect
 import json
 from .models import Reference
 from django.contrib.auth import login, authenticate
+from .forms import LoginForm
 
 
 def login_request(request):
-    return render(request, 'login.html')
+    return render(request, 'login.html', {'form': LoginForm})
 
 
 def authentication(request):
-    print("wahts going on?")
     if request.method == 'POST':
-        print("yes boyy")
         try:
             username = str(request.POST["username"])
             password = str(request.POST["password"])
@@ -25,10 +24,8 @@ def authentication(request):
         if user:
             login(request, user)
             print("I was here")
-            return JsonResponse({
-                "success": True
-            })
-    return JsonResponse({"success": False})
+            return HttpResponseRedirect('/home')
+    return HttpResponseRedirect('/')
 
 
 def home(request):
