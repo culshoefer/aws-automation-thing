@@ -60,16 +60,16 @@
 
           $('#login_button').on('click', function(){
             $.ajax({
-              'type': 'POST',
-              'url': '/authenticate/',
-              'data': {
+              type: 'POST',
+              url: '/authenticate/',
+              data: {
                 "username": $('#login_id').val(),
-                "password": $('#password_user').va()
-              }
-              'success': function(){
+                "password": $('#password_user').val()
+              },
+              success: function(){
                 console.log("Nothing happened");
-              }
-              'error': function(err){
+              },
+              error: function(err){
                 console.log(err);
               }
             })
