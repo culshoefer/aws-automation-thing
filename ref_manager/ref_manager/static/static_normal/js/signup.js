@@ -6,7 +6,7 @@ $('#signup-btn').on('click', function(){
     console.log("1")
     $.ajax({
       type: 'POST',
-      url: '/register_user/',
+      url: '/register_user',
       data: {
         "name": $('#name').val(),
         "email": $('#email').val(),
