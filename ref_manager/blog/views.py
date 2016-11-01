@@ -63,15 +63,16 @@ def get_references(request):
         return JsonResponse({'error': 'User not authenticated'})
 
     result = {'error': None, 'data': []}
-    for reference in references:
+    for reference in references.values():
+        print(reference)
         result['data'].append({
-            'title': reference.title,
-            'link': reference.link,
-            'notes': reference.notes,
-            'refid': reference.id
+            'title': reference['title'],
+            'link': reference['link'],
+            'notes': reference['notes'],
+            'refid': reference['id']
         })
 
-    return JsonResponse(references, safe=False)
+    return JsonResponse(result)
 
 
 def delete_reference(request):
