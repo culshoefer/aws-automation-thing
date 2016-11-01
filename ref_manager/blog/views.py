@@ -6,11 +6,13 @@ from django.contrib.auth import login, authenticate
 
 
 def login_request(request):
-    return render(request, 'login_1.html')
+    return render(request, 'login.html')
 
 
 def authentication(request):
+    print("wahts going on?")
     if request.method == 'POST':
+        print("yes boyy")
         try:
             username = str(request.POST["username"])
             password = str(request.POST["password"])
@@ -23,8 +25,10 @@ def authentication(request):
         if user:
             login(request, user)
             print("I was here")
-            return HttpResponseRedirect('/references')
-    return JsonResponse({"error": "Wrong username and password"})
+            return JsonResponse({
+                "success": True
+            })
+    return JsonResponse({"success": False})
 
 
 def home(request):
@@ -33,21 +37,20 @@ def home(request):
 
 def references(request):
     """ Handles /references """
-    # if request.method == 'GET':
-    #     return get_references(request)
-    #
-    # elif request.method == 'POST':
-    #     return create_reference(request)
-    #
-    # elif request.method == 'DELETE':
-    #     return delete_reference(request)
-    #
-    # elif request.method == 'PUT':
-    #     return edit_reference(request)
-    #
-    # else:
-    #     return JsonResponse({'error': 'Invalid request'})
-    return render(request, 'references.html', {})
+    if request.method == 'GET':
+        return get_references(request)
+
+    elif request.method == 'POST':
+        return create_reference(request)
+
+    elif request.method == 'DELETE':
+        return delete_reference(request)
+
+    elif request.method == 'PUT':
+        return edit_reference(request)
+
+    else:
+        return JsonResponse({'error': 'Invalid request'})
 
 
 def get_references(request):
@@ -79,6 +82,7 @@ def delete_reference(request):
     @param: request object for getting list of ids to delete
     Deletes the given refernces
     """
+
     data = json.loads(request.body.decode())
 
     try:
@@ -96,6 +100,7 @@ def create_reference(request):
     @param: request object to get details about the reference
     Creates the new reference
     """
+
     data = json.loads(request.body.decode())
     try:
         ref = Reference(
@@ -116,6 +121,7 @@ def edit_reference(request):
     @param: request object to get id of reference and details
     Edits the given reference
     """
+
     data = json.loads(request.body.decode())
     try:
         reference = Reference.objects.get(id=data['refid'])
@@ -131,3 +137,11 @@ def edit_reference(request):
 
     reference.save()
     return JsonResponse({'refid': reference.id})
+
+
+def signup(request):
+    return render(request, 'signup.html', {})
+
+
+def group(request):
+    return render(reqeust, 'group.html', {})
