@@ -7,20 +7,25 @@ from .models import Reference
 def login(request):
     return render(request, 'login.html')
 
+
 def references_page(request):
     return render(request, 'references.html')
 
+
 def signup(request):
-	return render(request, 'signup.html')
+    return render(request, 'signup.html')
+
 
 def group(request):
-	return render(request, 'group.html')
+    return render(request, 'group.html')
+
 
 def home(request):
     return render(request, 'references.html')
 
-""" Handles /references """
+
 def references(request):
+    """ Handles /references """
 
     if request.method == 'GET':
         return get_references(request)
@@ -38,11 +43,11 @@ def references(request):
         return JsonResponse({'error': 'Invalid request'})
 
 
-"""GET
-@param: request object to get the user
-@return: All references created by the given user
-"""
 def get_references(request):
+    """GET
+    @param: request object to get the user
+    @return: All references created by the given user
+    """
     user = request.user
 
     try:
@@ -50,7 +55,7 @@ def get_references(request):
     except:
         return JsonResponse({'error': 'User not authenticated'})
 
-    result = {'error':None, 'data': []}
+    result = {'error': None, 'data': []}
     for reference in references:
         result['data'].append({
             'title': reference.title,
@@ -62,11 +67,12 @@ def get_references(request):
     return JsonResponse(references, safe=False)
 
 
-"""DELETE
-@param: request object for getting list of ids to delete
-Deletes the given refernces
-"""
 def delete_reference(request):
+    """DELETE
+    @param: request object for getting list of ids to delete
+    Deletes the given refernces
+    """
+
     data = json.loads(request.body.decode())
 
     try:
@@ -79,18 +85,19 @@ def delete_reference(request):
     return JsonResponse({'success': 'Successfully deleted the references'})
 
 
-"""PUT
-@param: request object to get details about the reference
-Creates the new reference
-"""
 def create_reference(request):
+    """PUT
+    @param: request object to get details about the reference
+    Creates the new reference
+    """
+
     data = json.loads(request.body.decode())
     try:
         ref = Reference(
-                title = data['title'],
-                link = data['link'],
-                notes = data['notes'],
-                user = request.user
+                title=data['title'],
+                link=data['link'],
+                notes=data['notes'],
+                user=request.user
             )
     except:
         return JsonResponse({'error': 'Require title, link and notes'})
@@ -99,11 +106,11 @@ def create_reference(request):
     return JsonResponse({'refid': ref.id})
 
 
-""" POST
-@param: request object to get id of reference and details
-Edits the given reference
-"""
 def edit_reference(request):
+    """POST
+    @param: request object to get id of reference and details
+    Edits the given reference
+    """
 
     data = json.loads(request.body.decode())
     try:
