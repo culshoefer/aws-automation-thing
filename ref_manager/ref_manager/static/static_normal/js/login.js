@@ -39,7 +39,11 @@ function getCookie(name) {
         "password": $('#password_user').val()
       },
       success: function(data){
-        console.log(data)
+        if (data.success == true){
+
+        } else {
+        	console.log('Check your username and password m8');
+        }
       }
     })
     console.log("passed")
