@@ -1,23 +1,34 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 import json
 from .models import Reference
+from django.contrib.auth import login, authenticate
 
 
-def login(request):
+def login_request(request):
     return render(request, 'login.html')
 
 
-def references_page(request):
-    return render(request, 'references.html')
+def authentication(request):
+    print("wahts going on?")
+    if request.method == 'POST':
+        print("yes boyy")
+        try:
+            username = str(request.POST["username"])
+            password = str(request.POST["password"])
+            print(username, password)
+        except KeyError:
+            return JsonResponse({"error": "login credentials not given"})
 
-
-def signup(request):
-    return render(request, 'signup.html')
-
-
-def group(request):
-    return render(request, 'group.html')
+        user = authenticate(username=username, password=password)
+        print(user)
+        if user:
+            login(request, user)
+            print("I was here")
+            return JsonResponse({
+                "success": True
+            })
+    return JsonResponse({"success": False})
 
 
 def home(request):
@@ -26,7 +37,6 @@ def home(request):
 
 def references(request):
     """ Handles /references """
-
     if request.method == 'GET':
         return get_references(request)
 
@@ -107,7 +117,7 @@ def create_reference(request):
 
 
 def edit_reference(request):
-    """POST
+    """ POST
     @param: request object to get id of reference and details
     Edits the given reference
     """
@@ -127,3 +137,11 @@ def edit_reference(request):
 
     reference.save()
     return JsonResponse({'refid': reference.id})
+
+
+def signup(request):
+    return render(request, 'signup.html', {})
+
+
+def group(request):
+    return render(reqeust, 'group.html', {})
