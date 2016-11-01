@@ -3,6 +3,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 import json
 from .models import Reference
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 from .forms import LoginForm
 from django.views.decorators.csrf import csrf_exempt
 
@@ -29,11 +30,12 @@ def authentication(request):
     return HttpResponseRedirect('/')
 
 
+@login_required(login_url='/')
 def home(request):
     return render(request, 'references.html')
 
-
 @csrf_exempt
+@login_required(login_url='/')
 def references(request):
     """ Handles /references """
     if request.method == 'GET':
@@ -59,7 +61,6 @@ def get_references(request):
     @return: All references created by the given user
     """
     user = request.user
-
     try:
         references = Reference.objects.filter(user=user)
     except:
