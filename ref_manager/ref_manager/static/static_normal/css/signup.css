@@ -9,7 +9,7 @@
 .form {
   position: relative;
   z-index: 1;
-  background: #D6D5C9;
+  background: #93B7BE;
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px;
@@ -54,12 +54,12 @@
 
 .form .message {
   margin: 15px 0 0;
-  color: #b3b3b3;
+  color: #022F40;
   font-size: 12px;
 }
 
 .form .message a {
-  color: #4CAF50;
+  color: #2E6171;
   text-decoration: none;
 }
 
@@ -108,19 +108,10 @@
 }
 
 body {
-  background: #9BC4CB; /* fallback for old browsers */
+  background: #A67F8E; /* fallback for old browsers */
   font-family: 'Hind';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;  
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
-.span9 {
-  padding-top: 60px;
-  font-family: 'Hind';
-  font-size: 80px;
-  text-align: center;
-  vertical-align: center;
-}
