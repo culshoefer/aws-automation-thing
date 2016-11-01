@@ -4,7 +4,7 @@
 	max-width: 200px;
 	display: inline-block !important;
 	vertical-align: center;
-	position:relative; 
+	position:center; 
   display: inline-block;
 }
 
@@ -23,7 +23,7 @@ body {
 
 #title {
   font-family: 'Hind';
-  font-size: 80px;
+  font-size: 150px;
   text-align: center;
   padding-top: 60px;
 }
@@ -34,10 +34,11 @@ body {
   text-align: center;
 }
 
-.box {
-	padding-top: 20px;
-  padding-right: 20px;
-  float: left;
+#box {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    height:100%;
 }
 
 #person {
