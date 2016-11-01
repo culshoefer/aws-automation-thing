@@ -3,7 +3,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 import json
 from .models import Reference
 from django.contrib.auth import login, authenticate
-
+from django.views.decorators.csrf import csrf_exempt
 
 def login_request(request):
     return render(request, 'login.html')
@@ -145,3 +145,9 @@ def signup(request):
 
 def group(request):
     return render(request, 'group.html', {})
+
+
+@csrf_exempt
+def register_user(request):
+    print(request.POST)
+    return JsonResponse({"success":False})

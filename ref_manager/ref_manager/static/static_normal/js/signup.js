@@ -1,8 +1,12 @@
+$.ajaxSetup({
+  data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+
 $('#signup-btn').on('click', function(){
     console.log("1")
     $.ajax({
       type: 'POST',
-      url: '/authenticate/',
+      url: '/register_user/',
       data: {
         "name": $('#name').val(),
         "email": $('#email').val(),
@@ -17,8 +21,8 @@ $('#signup-btn').on('click', function(){
           };
         }
       }
-    })
-  })
+    });
+  });
 
 var password = document.getElementById("password")
 var confirm_password = document.getElementById("confirm_password");
