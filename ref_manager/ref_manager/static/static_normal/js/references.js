@@ -1,4 +1,24 @@
 $(document).ready(function() {
+  //stolen from http://stackoverflow.com/questions/6506897/csrf-token-missing-or-incorrect-while-post-parameter-via-ajax-in-django
+  function getCookie(c_name)
+  {
+      if (document.cookie.length > 0)
+      {
+          c_start = document.cookie.indexOf(c_name + "=");
+          if (c_start != -1)
+          {
+              c_start = c_start + c_name.length + 1;
+              c_end = document.cookie.indexOf(";", c_start);
+              if (c_end == -1) c_end = document.cookie.length;
+              return unescape(document.cookie.substring(c_start,c_end));
+          }
+      }
+      return "";
+   }
+
+  $.ajaxSetup({
+      headers: { "X-CSRFToken": getCookie("csrftoken") }
+  });
     var $TABLE = $('#table');
     var $TEMPLATE_ROW = $TABLE.find('tr.hide');
     var references = [{
@@ -59,7 +79,7 @@ $(document).ready(function() {
   }
 
   function getReferences(success, error) {
-    $.get( "/references/", function(rawData) {
+    $.get( "/references", function(rawData) {
       if(rawData.error && rawData.error != null) {
         error(rawData.error);
       } else {
@@ -79,8 +99,7 @@ $(document).ready(function() {
   }
 
   function clearAllReferences(){
-    console.log("References cleared!");
-    //we don't have the DOM done yet, so just simulate htis TODO
+    $TABLE.slice(1).remove();
   }
 
   function getEditableTableRow() {
@@ -125,12 +144,11 @@ $(document).ready(function() {
     return ind;
   }
 
-  //TODO integrate this function into DOM
   //DELETE
-  function deleteReferenceOnServer() {
-      var refid = "1234"; //TODO really get the reference from the DOM
+  function deleteReferenceOnServer(refid) {
       var sendObj = {};
-      sendObj["refids"] = [refid];
+      sendObj["refids"] = [];
+      sendObj["refids"].push(refid);
       $.ajax({
           type: "DELETE",
           url: "/references",
@@ -145,7 +163,6 @@ $(document).ready(function() {
   //GET
   function getReferences(success, error) {
     $.getJSON( "/references", function(rawData) {
-      rawData = JSON.parse(rawData);
       if(rawData.error && rawData.error != null) {
         error(rawData.error);
       } else {
@@ -165,8 +182,8 @@ $(document).ready(function() {
       type: "PUT",
       url: "/referenes",
       data: JSON.stringify(reference),
-      success: function(newRefIdStr) {
-        newRefId = JSON.parse(newRefIdStr)["refid"];
+      success: function(newRefIdObj) {
+        newRefId = newRefIdObj["refid"];
         reference["refid"] = newRefId;
         references.push(reference);
         addReferenceToUI(reference);
