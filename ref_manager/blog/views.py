@@ -34,7 +34,6 @@ def authentication(request):
 def home(request):
     return render(request, 'references.html')
 
-@csrf_exempt
 @login_required(login_url='/')
 def references(request):
     """ Handles /references """
