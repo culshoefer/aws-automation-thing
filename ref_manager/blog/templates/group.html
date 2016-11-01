@@ -4,7 +4,7 @@
 {% block title %}team{% endblock title %}
 
 {% block more_links %}
-	<link rel="stylesheet" href="{% static 'css/login.css' %}">
+	<link rel="stylesheet" href="{% static 'css/group.css' %}">
 {% endblock more_links %}
 
 {% block main_content %}
@@ -14,22 +14,12 @@
 		</p>
 	</div>
 
-	<div>
-	  	<div class="form">
-	   		<form class="register-form">
-	   			<input type="text" placeholder="name"/>
-	   			<input type="password" placeholder="password"/>
-	      		<button>create</button>
-	      		<p class="message">Already registered? <a href="{% url 'login' %}">Sign In</a></p>
-	    	</form>
-	    	<form class="login-form">
-	      		<input type="text" placeholder="username"/>
-	      		<input type="password" placeholder="password"/>
-	      		<button>login</button>
-	   			<p class="message">Not registered? <a id="create-account" href="{% url 'signup' %}">Create an account</a></p>
-	    	</form>
-	  	</div>
+	<div id="box">
+		<img class="round_image" src="{% static 'image/emily.jpg' %}"/>
+		<img class="round_image" src="{% static 'image/emily.jpg' %}"/>
+		<img class="round_image" src="{% static 'image/emily.jpg' %}"/>
 	</div>
+
 {% endblock main_content %}
 
 {% block more_scripts %}
