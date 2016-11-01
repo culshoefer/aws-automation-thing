@@ -6,7 +6,7 @@ Understanding and practical experience of deploying an application
 Appreciation of how automation can be achieved and some of the tools available
 
 # Checklist (Not an actual checklist)
-- Created webapp
+- ~~Created webapp~~
 - Configured staging and production environment
 - Automated EC2 production and staging spinup
 - Enabled EC2 production and staging autoscale
