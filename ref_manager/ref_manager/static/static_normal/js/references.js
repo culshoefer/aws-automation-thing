@@ -1,44 +1,19 @@
 $(document).ready(function() {
-var $TABLE = $('#table');
-var $BTN = $('#export-btn');
-var $EXPORT = $('#export');
+    var $TABLE = $('#table');
 
-$('.table-add').click(function () {
-  var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
-  $TABLE.find('table').append($clone);
-});
+    $('.table-add').click(function () {
+	var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
+	$TABLE.find('table').append($clone);
+    });
 
-$('.table-remove').click(function () {
-  $(this).parents('tr').detach();
-});
+    $('.table-remove').click(function () {
+	$(this).parents('tr').detach();
+    });
 
-$('.table-up').click(function () {
-  var $row = $(this).parents('tr');
-  if ($row.index() === 1) return; // Don't go above the header
-  $row.prev().before($row.get(0));
-});
 
-$('.table-down').click(function () {
-  var $row = $(this).parents('tr');
-  $row.next().after($row.get(0));
-});
-
-// A few jQuery helpers for exporting only
-jQuery.fn.pop = [].pop;
-jQuery.fn.shift = [].shift;
-
-$BTN.click(function () {
-  var $rows = $TABLE.find('tr:not(:hidden)');
-  var headers = [];
-  var data = [];
-  
-  // Get the headers (add special header logic here)
-  $($rows.shift()).find('th:not(:empty)').each(function () {
-    headers.push($(this).text().toLowerCase());
-  });
-  
-  // Turn all existing rows into a loopable array
-  $rows.each(function () {
+    /*    
+    // Turn all existing rows into a loopable array
+    $rows.each(function () {
     var $td = $(this).find('td');
     var h = {};
     
@@ -49,11 +24,9 @@ $BTN.click(function () {
     
     data.push(h);
   });
-  
-  // Output the result
-  $EXPORT.text(JSON.stringify(data));
-});
-
+    */
+    
+  var references = [];
 
   function getReferences(success, error) {
     $.get( "/references/", function(rawData) {
@@ -67,6 +40,7 @@ $BTN.click(function () {
   }
 
   function overwriteReferences(referenceData) {
+    references = referenceData;
     clearAllReferences();
     for(int i = 0; i < referenceData.length; i++) {
       var reference = referenceData[i];
@@ -76,13 +50,106 @@ $BTN.click(function () {
 
   function clearAllReferences(){
     console.log("References cleared!");
-    //we don't have the DOM done yet, so just simulate htis
+    //we don't have the DOM done yet, so just simulate htis TODO
   }
 
   function addReferenceToUI(reference) {
     console.log(JSON.stringify(reference));
-    //we don't have the DOM done yet, so just print elements
+    //we don't have the DOM done yet, so just print elements TODO
   }
 
-  getReferences(overwriteReferences, console.log);
+  function updateReferences() {
+    getReferences(overwriteReferences, console.log);
+  }
+
+
+  function deleteReference(redid) {
+    var ind = getReferencePositionFromId(refid);
+    if(ind != -1) {
+      references.splice(ind, 1);
+    }
+  }
+
+  function getReferencePositionFromId(refid) {
+    var ind = -1;
+    var arr = $.grep(references, function(elem, index) {
+      if(refid.equals(elem.refid)) {
+        ind = index;
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return ind;
+  }
+
+  //TODO integrate this function into DOM
+  //DELETE
+  function deleteReferenceOnServer() {
+      var refid = "1234"; //TODO really get the reference from the DOM
+      var sendObj = {};
+      sendObj["refids"] = [refid];
+      $.ajax({
+          type: "DELETE",
+          url: "/references/",
+          data: JSON.stringify(sendObj),
+          success: function(data) {
+            deleteReference(refid);
+            overwriteReferences(references);
+          }
+      });
+  }
+
+  //GET
+  function getReferences(success, error) {
+    $.getJSON( "/references/", function(rawData) {
+      rawData = JSON.parse(rawData);
+      if(rawData.error && rawData.error != null) {
+        error(rawData.error);
+      } else {
+        success(rawData.data);
+      }
+    })
+    .fail(error);
+  }
+
+  //PUT
+  function addReferenceToServer() {
+    var reference = {};
+    reference["title"] = "testtitle";
+    reference["link"] = "http://google.com";
+    reference["notes"] = "Some reference thing";
+    $.ajax({
+      type: "PUT",
+      url: "/referenes/",
+      data: JSON.stringify(reference),
+      success: function(newRefIdStr) {
+        newRefId = JSON.parse(newRefIdStr)["refid"];
+        reference["refid"] = newRefId;
+        references.push(reference);
+        overwriteReferences(references);
+      }
+    });
+  }
+
+  //POST
+  function updateReferenceOnServer() {
+    var reference = {};
+    reference["title"] = "testtitle";
+    reference["link"] = "http://google.com";
+    reference["notes"] = "Some reference thing";
+    reference["refid"] = "alsfmaselm13";
+    $.ajax({
+      type: "POST",
+      url: "/referenes/",
+      data: JSON.stringify(reference),
+      success: function() {
+        deleteReference(refid);
+        references.push(reference);
+        overwriteReferences(references);
+      }
+    });
+  }
+
+  updateReferences();
 });
