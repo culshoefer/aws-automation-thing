@@ -1,4 +1,4 @@
-# Scenario Week 3 brief ![](https://travis-ci.org/culshoefer/aws-automation-thing.svg?branch=master)
+# Scenario Week 3 brief ![](https://travis-ci.org/culshoefer/aws-automation-thing.svg?branch=dev)
 
 As much of the build process and deployment as possible should be automated
 Outcomes: Understanding/practical experience of configuring a VM on AWS for specific roles
