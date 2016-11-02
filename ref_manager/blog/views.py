@@ -3,10 +3,14 @@ from django.http import JsonResponse, HttpResponseRedirect
 import json
 from .models import Reference
 from django.contrib.auth import login, authenticate
+<<<<<<< HEAD
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm
 from django.views.decorators.csrf import csrf_exempt
 
+=======
+from django.views.decorators.csrf import csrf_exempt
+>>>>>>> 7a9199082485c847cb915bcedcad93691dccfb87
 
 def login_request(request):
     return render(request, 'login.html', {'form': LoginForm})
@@ -146,3 +150,9 @@ def signup(request):
 
 def group(request):
     return render(request, 'group.html', {})
+
+
+@csrf_exempt
+def register_user(request):
+    print(request.POST)
+    return JsonResponse({"success":False})

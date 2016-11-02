@@ -46,6 +46,6 @@ function getCookie(name) {
         }
       }
     })
-    console.log("passed")
+    console.log("passed");
 
   })
