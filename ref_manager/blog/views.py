@@ -1,45 +1,56 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 import json
 from .models import Reference
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from .forms import LoginForm
+from django.views.decorators.csrf import csrf_exempt
 
 
-def login(request):
-    return render(request, 'login.html')
+def login_request(request):
+    return render(request, 'login.html', {'form': LoginForm})
 
 
-def references_page(request):
-    return render(request, 'references.html')
+def authentication(request):
+    if request.method == 'POST':
+        try:
+            username = str(request.POST["username"])
+            password = str(request.POST["password"])
+            print(username, password)
+        except KeyError:
+            return JsonResponse({"error": "login credentials not given"})
+
+        user = authenticate(username=username, password=password)
+        print(user)
+        if user:
+            login(request, user)
+            print("I was here")
+            return HttpResponseRedirect('/home')
+    return HttpResponseRedirect('/')
 
 
-def signup(request):
-    return render(request, 'signup.html')
-
-
-def group(request):
-    return render(request, 'group.html')
-
-
+@login_required(login_url='/')
 def home(request):
     return render(request, 'references.html')
 
-
+@login_required(login_url='/')
 def references(request):
     """ Handles /references """
-
     if request.method == 'GET':
         return get_references(request)
-
-    elif request.method == 'POST':
-        return create_reference(request)
 
     elif request.method == 'DELETE':
         return delete_reference(request)
 
-    elif request.method == 'PUT':
+    elif request.method == 'POST':
         return edit_reference(request)
 
+    elif request.method == 'PUT':
+        return create_reference(request)
+
     else:
+        print("invalid request")
         return JsonResponse({'error': 'Invalid request'})
 
 
@@ -49,22 +60,21 @@ def get_references(request):
     @return: All references created by the given user
     """
     user = request.user
-
     try:
         references = Reference.objects.filter(user=user)
     except:
         return JsonResponse({'error': 'User not authenticated'})
 
     result = {'error': None, 'data': []}
-    for reference in references:
+    for reference in references.values():
         result['data'].append({
-            'title': reference.title,
-            'link': reference.link,
-            'notes': reference.notes,
-            'refid': reference.id
+            'title': reference['title'],
+            'link': reference['link'],
+            'notes': reference['notes'],
+            'refid': reference['id']
         })
 
-    return JsonResponse(references, safe=False)
+    return JsonResponse(result)
 
 
 def delete_reference(request):
@@ -92,6 +102,7 @@ def create_reference(request):
     """
 
     data = json.loads(request.body.decode())
+    print(data)
     try:
         ref = Reference(
                 title=data['title'],
@@ -107,7 +118,7 @@ def create_reference(request):
 
 
 def edit_reference(request):
-    """POST
+    """ POST
     @param: request object to get id of reference and details
     Edits the given reference
     """
@@ -127,3 +138,11 @@ def edit_reference(request):
 
     reference.save()
     return JsonResponse({'refid': reference.id})
+
+
+def signup(request):
+    return render(request, 'signup.html', {})
+
+
+def group(request):
+    return render(reqeust, 'group.html', {})
