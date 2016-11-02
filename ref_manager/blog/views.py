@@ -6,6 +6,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm
 
+
 def login_request(request):
     return render(request, 'login.html', {'form': LoginForm})
 
