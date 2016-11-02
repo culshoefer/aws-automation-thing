@@ -1,10 +1,25 @@
-# Scenario Week 4 brief
+# Scenario Week 3 brief ![](https://travis-ci.org/culshoefer/aws-automation-thing.svg?branch=dev)
 
 As much of the build process and deployment as possible should be automated
 Outcomes: Understanding/practical experience of configuring a VM on AWS for specific roles
 Understanding and practical experience of deploying an application
 Appreciation of how automation can be achieved and some of the tools available
 
+# Checklist (Not an actual checklist)
+- ~~Created webapp~~
+- Configured staging and production environment
+- Automated EC2 production and staging spinup
+- Enabled EC2 production and staging autoscale
+- Automated Production and testing/staging RDS setup
+- Automated VPC setup for production + staging
+- Put all static files in S3
+- Automated instance restart after failure/crash/restart
+   - Cloud53: Added standby cluster for failover
+- EC2 instances are Amazon Linux
+- Automated building application on development machine
+- Created DB automatic backup on production server
+   - + DB automatic restore
+   - + long-term storage?
 # Task at hand
 
 quick link to moodle: https://moodle.ucl.ac.uk/course/view.php?id=18729&section=7
