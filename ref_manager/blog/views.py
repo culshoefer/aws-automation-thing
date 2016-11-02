@@ -145,4 +145,4 @@ def signup(request):
 
 
 def group(request):
-    return render(reqeust, 'group.html', {})
+    return render(request, 'group.html', {})
