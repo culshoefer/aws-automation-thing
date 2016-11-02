@@ -156,3 +156,4 @@ def register_user(request):
     except:
         return JsonResponse({"success": False})
     return JsonResponse({"success": True})
+
