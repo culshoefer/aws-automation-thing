@@ -8,3 +8,23 @@ python:
    - "3.6-dev"
 install: ./djangosetup.sh
 script: ./testbuild.sh
+before_deploy: ./package.sh
+deploy:
+   - provider: s3
+     access_key_id: "INSERT ENCRYPTED AWS ACCESS KEY HERE"
+     secret_access_key: &1
+       secure: "SECURE KEY"
+     local_dir: rdy4deploy_ref_manager
+     skip_cleanup: true
+     bucket: refmanager-codedeploy
+     on:
+       branch: master
+   - provider: codedeploy
+     access_key_id: "INSERT ENCRYPTED AWS ACCESS KEY HERE"
+     secret_access_key: *1
+     bucket: refmanager-codedeploy
+     key: latest.zip
+     bundle_type: zip
+     application: RefManager
+     deployment_group: StagingAndProductionCanWeHaveBoth
+     bucket: "OUR S3 BUCKET"
