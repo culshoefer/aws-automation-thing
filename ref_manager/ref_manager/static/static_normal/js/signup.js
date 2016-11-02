@@ -2,26 +2,32 @@ $.ajaxSetup({
   data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
 });
 
-$('#signup-btn').on('click', function(){
-    console.log("1")
+data = 
+
+$('#signup-btn').on('click', function(e){
+    e.preventDefault();
+    var data = {
+      "name": $('#name').val(),
+      "email": $('#email').val(),
+      "password": $('#password').val()
+    }
+    console.log(data);
     $.ajax({
       type: 'POST',
       url: '/register_user',
-      data: {
-        "name": $('#name').val(),
-        "email": $('#email').val(),
-        "password": $('#password').val()
-      },
-      success: function(data){
-        console.log("this runs")
-        if (data.success == true){
-        	window.location= "/login";
-          console.log('hey bbby');
+      data: data,
+      success: function(data) {
+        console.log("this runs", data);
+        if (data.success) {
+          window.location = "/login";
         } else {
           window.onerror = function(msg, url, line, col, error) {
              alert("Error: " + msg + "\nurl: " + url + "\nline: " + line);
           };
         }
+      },
+      error: function(data){
+        console.log(data);
       }
     });
   });
