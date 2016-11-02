@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name server_domain_or_ip;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+	        root /home/ubuntu/aws-automation-thing/ref_manager/ref_manager/static/static_root/;
+    }
+
+    location / {
+        include proxy_params;
+	proxy_pass http://unix:/home/ubuntu/aws-automation-thing/ref_manager/ref_manager.sock;
+    }
+}
