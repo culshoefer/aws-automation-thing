@@ -14,7 +14,7 @@ ref_manager/venv/
 auto-save-list
 tramp
 .\#*
-
+.~*#
 # Org-mode
 .org-id-locations
 *_archive
