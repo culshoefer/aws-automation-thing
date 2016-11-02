@@ -3,9 +3,10 @@ from django.http import JsonResponse, HttpResponseRedirect
 import json
 from .models import Reference
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm
-
+from django.views.decorators.csrf import csrf_exempt
 
 def login_request(request):
     return render(request, 'login.html', {'form': LoginForm})
@@ -149,5 +150,9 @@ def group(request):
 
 @csrf_exempt
 def register_user(request):
-    print(request.POST)
-    return JsonResponse({"success":False})
+    myDict = request.POST.dict()
+    try:
+        user = User.objects.create_user(name = myDict["name"], email = myDict["email"], password = ["password"])
+    except:
+        return JsonResponse({"success": False})
+    return JsonResponse({"success": True})

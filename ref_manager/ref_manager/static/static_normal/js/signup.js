@@ -13,8 +13,10 @@ $('#signup-btn').on('click', function(){
         "password": $('#password').val()
       },
       success: function(data){
+        console.log("this runs")
         if (data.success == true){
         	window.location= "/login";
+          console.log('hey bbby');
         } else {
           window.onerror = function(msg, url, line, col, error) {
              alert("Error: " + msg + "\nurl: " + url + "\nline: " + line);
