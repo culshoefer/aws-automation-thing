@@ -5,7 +5,7 @@ from .models import Reference
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm
-
+from django.views.decorators.csrf import csrf_exempt
 
 def login_request(request):
     return render(request, 'login.html', {'form': LoginForm})
@@ -149,5 +149,5 @@ def group(request):
 
 @csrf_exempt
 def register_user(request):
-    print(request.POST)
+    console.log(data)
     return JsonResponse({"success":False})
