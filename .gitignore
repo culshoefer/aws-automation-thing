@@ -1,6 +1,10 @@
+# Potential creepins of built things
+rdy4deploy_ref_manager/
+ref_manager/ref_manager/
+codedeployrole.json
+
 # Virtual environment
 ref_manager/venv/
-
 ### Emacs template
 # -*- mode: gitignore; -*-
 *~
@@ -11,7 +15,7 @@ ref_manager/venv/
 auto-save-list
 tramp
 .\#*
-
+.~*#
 # Org-mode
 .org-id-locations
 *_archive
