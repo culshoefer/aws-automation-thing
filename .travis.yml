@@ -6,4 +6,4 @@ python:
    - "3.5-dev"
    - "3.6-dev"
 install: ./djangosetup.sh
-script: python manage.py test
+script: python ref_manager/manage.py test
