@@ -27,4 +27,3 @@ deploy:
      bundle_type: zip
      application: RefManager
      deployment_group: StagingAndProductionCanWeHaveBoth
-     bucket: "OUR S3 BUCKET"

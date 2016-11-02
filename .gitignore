@@ -1,9 +1,9 @@
 # Potential creepins of built things
 rdy4deploy_ref_manager/
+ref_manager/ref_manager/
 
 # Virtual environment
 ref_manager/venv/
-
 ### Emacs template
 # -*- mode: gitignore; -*-
 *~
