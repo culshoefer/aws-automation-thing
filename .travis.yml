@@ -5,13 +5,6 @@ install: "./djangosetup.sh"
 script: "./testbuild.sh"
 before_deploy: "./package.sh"
 deploy:
-language: python
-python:
-- '3.3'
-install: "./djangosetup.sh"
-script: "./testbuild.sh"
-before_deploy: "./package.sh"
-deploy:
   - provider: script
   script: ./deploy.sh
   skip_cleanup: true
