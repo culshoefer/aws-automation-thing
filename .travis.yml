@@ -19,6 +19,7 @@ deploy:
   region: eu-central-1
   skip_cleanup: true
   bucket: refmanager-codedeploy
+  application: RefManager
   on:
     branch: master
 - provider: codedeploy
