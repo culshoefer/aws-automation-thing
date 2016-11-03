@@ -16,6 +16,7 @@ deploy:
   secret_access_key: &2
     secure: dn9T8a8h5yH2FIp0R7sYZxmrkvq7v+COPuDqsKFnDKbw+Pn0FvxwvqRZPJdF3jlbCEPVBDzDoiwlc/1Cpja19JoVKimK116ZXkJ8FU9bDMdWboRLN56iEO+NtovrGr76pJbaEv2Iohipn4U/GqYqyvCRQN+2crvJ5YLud8CuPy17Sx72t7+3UUCIsfhe2m52y4Sjj6JiKPg1grC8FdCB8jbD+5VRMdgyPuerXf0xjNrPQHwgMnN3k2KvhrvSji8P6VCDpIkQZsqxdT+k5850hAJAhATH4waHl3t90IUlqntiNfjKG+0inGo6fccMpVyEX3d8Pr7jbAljHCCig6teJa2CSOA33HIYyVVeBmEosjLwUM0DZB/EFl9ejhfZ/Xno052K+KM488fnZk09OkJyz761tdFiOLnE6LMc5VdEgCxX8bupVZ3CxAsS8B1VGFqh/urfsBO7nKw019Ntd1nNQamgWzbQl1gHjPfXqU/msf5ix8n9R5bFe1X+MI3PPA/Zj0zjGLDBhNcoeWL/4xvYTyTD3hJhNyq1sN//NuhyjqggpBcxeepT0p7neJeD2Mw1IwbACh66J43AmjZzJTIqI0boHI3jLWh8uaByXwD46DuhRA9naAhlnr0kgci2TFy1bEhd2A5OP8sKNqiwfsBSuRjYZaPXBBwqIdh1dnarwSI=
   local_dir: rdy4deploy_ref_manager
+  region: eu-central-1
   skip_cleanup: true
   bucket: refmanager-codedeploy
   on:
@@ -27,4 +28,4 @@ deploy:
   key: latest.zip
   bundle_type: zip
   application: RefManager
-  deployment_group: StagingAndProduction
+  deployment_group: Staging
