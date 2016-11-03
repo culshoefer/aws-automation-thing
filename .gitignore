@@ -5,6 +5,7 @@ codedeployrole.json
 
 # Virtual environment
 ref_manager/venv/
+aws_settings.py
 ### Emacs template
 # -*- mode: gitignore; -*-
 *~
