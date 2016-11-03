@@ -10,22 +10,23 @@
 {% endblock more_links %}
 
 {% block main_content %}
+<p id="title">
+      Your Citations 
+    </p>
   <div id="table" class="table-editable">
-    <span class="table-add glyphicon glyphicon-plus"></span>
     <table class="table">
       <tr>
         <th>Title</th>
         <th>Link</th>
         <th>Notes</th>
-        <th></th>
-        <th></th>
+        <th class="table-add glyphicon glyphicon-plus"></th>
       </tr>
       <!-- This is our clonable table line -->
       <tr class="hide">
         <td contenteditable="true" class="contentTableCell">Untitled</td>
         <td contenteditable="true" class="contentTableCell">undefined</td>
         <td contenteditable="true" class="contentTableCell">undefined</td>
-        <td>
+        <td class = "x">
           <span class="table-remove glyphicon glyphicon-remove"></span>
         </td>
       </tr>
