@@ -28,5 +28,5 @@ deploy:
   bucket: "refmanager-codedeploy"
   key: latest.zip
   bundle_type: zip
-  application: RefManager
+  application: 752d5035-5ac2-4263-99d1-f0ff1787c419
   deployment_group: Staging
