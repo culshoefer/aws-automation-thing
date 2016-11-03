@@ -1,0 +1,12 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/aws-automation-thing/ref_manager
+ExecStart=/home/ubuntu/env/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/aws-automation-thing/ref_manager/ref_manager.so$
+
+[Install]
+WantedBy=multi-user.target
