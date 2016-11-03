@@ -1,9 +1,34 @@
-$(document).ready( function() {
-
-    $("#signup-btn").click( function(event) {
-        alert("You clicked the button using JQuery innit");
-    });    
+$.ajaxSetup({
+  data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
 });
+
+$('#signup-btn').on('click', function(e){
+    e.preventDefault();
+    var data = {
+      "name": $('#name').val(),
+      "email": $('#email').val(),
+      "password": $('#password').val()
+    }
+    console.log(data);
+    $.ajax({
+      type: 'POST',
+      url: '/register_user',
+      data: data,
+      success: function(data) {
+        console.log("this runs", data);
+        if (data.success) {
+          window.location = "/login";
+        } else {
+          window.onerror = function(msg, url, line, col, error) {
+             alert("Error: " + msg + "\nurl: " + url + "\nline: " + line);
+          };
+        }
+      },
+      error: function(data){
+        console.log(data);
+      }
+    });
+  });
 
 var password = document.getElementById("password")
 var confirm_password = document.getElementById("confirm_password");

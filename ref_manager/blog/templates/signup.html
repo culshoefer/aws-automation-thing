@@ -6,7 +6,6 @@
 
 {% block more_links %}
     <link rel="stylesheet" href="{% static 'css/signup.css' %}">
-    <link rel="stylesheet" href="{% static 'js/signup.js' %}">
 {% endblock more_links %}
 
 {% block main_content %}
@@ -27,24 +26,24 @@
         <form>
             <p id="form_title">Sign up</p>
             <div class = "top-row">
-			          <div class = "field-wrap">
-				            <label>
+			    <div class = "field-wrap">
+				    <label>
                         Name<span class="req">*</span>
                     </label>
-              	    <input type="text" placeholder = "example: John Smith" required autocomplete="off"/>
+              	    <input type="text" id="name" placeholder = "example: John Smith" required autocomplete="off"/>
                 </div>
             </div>
             <div class="field-wrap">
                 <label>
                 	Email Address<span class="req">*</span>
                 </label>
-                <input type="email" placeholder = "johnsmith@email.com" required autocomplete="off"/>
+                <input type="email" id="email" placeholder = "johnsmith@email.com" required autocomplete="off"/>
             </div>
             <div class="field-wrap">
                 <label>
                 	Set your Password<span class="req">*</span>
                 </label>
-                <input type="password" placeholder = "*******" required autocomplete="off" id="password"/>
+                <input type="password" id="password" placeholder = "*******" required autocomplete="off" id="password"/>
             </div>
             <div class="field-wrap">
                 <label>
@@ -52,7 +51,7 @@
                 </label>
                 <input type="password" placeholder = "*******" required autocomplete="off" id="confirm_password"/>
             </div>
-            <button button id="signup-btn">sign up</button>
+            <button button id="signup-btn" onclick="validatePasswordMatch()" >sign up</button>
             <p class="message">Already registered? <a href="{% url 'login' %}">Log in</a></p>
         </form>
     </div>
@@ -60,5 +59,5 @@
 {% endblock main_content %}
 
 {% block more_scripts %}
-
+    <script src="{% static "js/signup.js" %}"></script>
 {% endblock more_scripts %}
