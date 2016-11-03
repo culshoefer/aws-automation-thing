@@ -22,7 +22,7 @@ yes yes | sudo apt-get update
 yes yes | sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib nginx systemd ufw
 
 pip install --upgrade pip
-pip install virtualenv
+sudo pip install virtualenv
 
 virtualenv_dep_install
 echo "Now performing Django tasks"

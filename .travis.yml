@@ -9,12 +9,10 @@ install: "./djangosetup.sh"
 script: "./testbuild.sh"
 before_deploy:
   - "./package.sh"
-  - pip install fabric
-  - echo "$DEPLOY_KEY" >> ~/.ssh/deploy_key.pem
-  - yes yes | git remote add live ssh://ubuntu@ec2-54-229-70-158.eu-west-1.compute.amazonaws.com/home/ubuntu/repo/site.git
+  - pip install fabric gitric
 deploy:
   provider: script
-  script: ./empty.sh
+  script: fab -H $DEPLOY_HOSTS -p $DEPLOY_PASS prod deploy_from_travis_cutover
   skip_cleanup: true
   on:
     branch: dev
