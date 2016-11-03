@@ -16,4 +16,4 @@ def deploy():
         run('python manage.py migrate')
         run('python manage collect_static')
         sudo('stystemclt restart nginx')
-	print('deploy complete!')
+        print('deploy complete!')
