@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # This script is for running the setup of NGINX, PostGreSQL
-# We also call djangosetup.sh from here
+# We also call djangosetup.sh from here?
 
 # Gunicorn setup
-sudo cp srvr_conffiles/gunicorn.service /etc/systemd/gunicorn.service
+sudo cp srvr_conffiles/gunicorn.service /etc/systemd/system/gunicorn.service
 sudo systemctl start gunicorn
 sudo systemctl enable gunicorn
 sudo systemctl daemon-reload
