@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = 'blog.views.login_request'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -75,25 +77,13 @@ WSGI_APPLICATION = 'ref_manager.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-if os.environ.get("IS_TRAVIS"):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-else:
-    from .aws_settings import *
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': NAME,
-            'USER': USER,
-            'PASSWORD': PASSWORD,
-            'HOST': HOST,
-            'PORT': '5432',
-        }
-    }
+}
 
 
 # Password validation
@@ -134,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'ref_manager', 'static', 'static_root', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'ref_manager', 'static', 'static_root')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'ref_manager', 'static', 'static_normal'),

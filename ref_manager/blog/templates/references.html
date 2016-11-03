@@ -9,6 +9,14 @@
  <link rel="stylesheet" href="{% static 'css/references.css' %}">
 {% endblock more_links %}
 
+{% block signout %}
+  <ul class="nav navbar-nav navbar-right">
+    <li>
+      <a href="{% url 'logout' %}">signout</a>
+    </li>
+  </ul>
+{% endblock signout %}
+
 {% block main_content %}
 <p id="title">
       Your Citations 

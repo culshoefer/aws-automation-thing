@@ -7,6 +7,14 @@
 	<link rel="stylesheet" href="{% static 'css/group.css' %}">
 {% endblock more_links %}
 
+{% block signout %}
+	<ul class="nav navbar-nav navbar-right">
+		<li>
+			<a href="{% url 'logout' %}">signout</a>
+		</li>
+	</ul>
+{% endblock signout %}
+
 {% block main_content %}
 	<div class="span9">
 		<p id="title">
@@ -41,6 +49,10 @@
 			<img class="round_image" src="{% static 'image/chris.jpg' %}"/>
 			<p id="name">chris</p>
 		</div>
+		<div id="person" class="span3">
+			<img class="round_image" src="{% static 'image/kohei.jpg' %}"/>
+			<p id="name">kohei</p>
+		</div>		
 	</div>
 	</div>
 {% endblock main_content %}
