@@ -2,8 +2,6 @@ $.ajaxSetup({
   data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
 });
 
-data = 
-
 $('#signup-btn').on('click', function(e){
     e.preventDefault();
     var data = {

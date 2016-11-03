@@ -18,8 +18,6 @@
 	  	<div class="form">
 	    	<form class=login-form method="post" action="/user_login">
             {% csrf_token %}
-	      		<!-- <input type="text" id="login_id" placeholder="username"/> -->
-	      		<!-- <input type="password" id="password_user" placeholder="password"/> -->
             {{ form.username }}
             {{ form.password }}
 	      		<input class="btn btn-success btn-sm" type="submit" value="login" />
