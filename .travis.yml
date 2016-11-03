@@ -1,4 +1,6 @@
 language: python
+addons:
+  ssh_known_hosts: 54.229.70.158
 python:
 - '3.3'
 install: "./djangosetup.sh"
@@ -14,8 +16,6 @@ before_deploy:
   - yes yes | git remote add live ssh://ubuntu@ec2-54-229-70-158.eu-west-1.compute.amazonaws.com/home/ubuntu/repo/site.git
   - echo "Now pushing"
   - git push live master
-addons:
-  ssh_known_hosts: 54.229.70.158
 deploy:
   provider: script
   script: ./empty.sh
