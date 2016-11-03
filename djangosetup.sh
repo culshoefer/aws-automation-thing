@@ -28,8 +28,4 @@ virtualenv_dep_install
 echo "Now performing Django tasks"
 pwd
 ls
-source venv/bin/activate
-venv/bin/python manage.py makemigrations
-venv/bin/python manage.py migrate
-yes yes | venv/bin/python manage.py collectstatic
-deactivate
+echo "NOW PLEASE INSERT AWS SETTINGS IN aws_settings"
