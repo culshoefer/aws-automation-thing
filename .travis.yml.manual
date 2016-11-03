@@ -1,0 +1,27 @@
+language: python
+python:
+- '3.3'
+install: "./djangosetup.sh"
+script: "./testbuild.sh"
+before_deploy: "./package.sh"
+deploy:
+- provider: s3
+  access_key_id: &1
+    secure: J9IfaYJB2f/+/NbLqGf2S3qfEc2DF0YpEg/L76sC3XBcBD1Zmi0XXMsBCXW5j03J7WZU4X6vWw+l9RHFo7MDK7Q0W5jYBoRDfCNe739qREJfAI3qlXgbrBKDHflmV/0EbKk9BPommErPWApbHkHdEYkL8iqaxoVtv57fzLgkLiJT81nNft91Q5+J78l4QxNvk3Nm+EJYriVTyaZKcQtD7geQaQYoDKmKLXRtySTsMfaY0XwI+CCfg7dgQlHxIyYAAZBEnqrbRZPISECR38vV/aYcqUwKipFzK62IWg8MC8LRhFXjveX9JuE/4l38AEVYO/2/XGlhaIwOutGK0e0GFWaKGydupYJf3jxnoQLx7YK88H0MLtClTT5UCk7jGonwd1M//V3M82VDuEx9loBVeA0ot1QYyhk4W6837QF9pzjjKcWivzKHPvT8RJlaQDDD/m7ZYtOdauJj07q5oVuCSPRVSrjq5rgeDglox7szAek4ZUQv1WrrZRJBiV1zlcTCF942342RjXuJ1AU2jQcyuNrs6H4z2y8w4bLI4q6NCFBtKQx56JXgQsyRuCuzHvfcI/7l2kdbFkBMtvAH2TYjgVOiJqAaEHw/c0UOepgU+hgZCbrIYcUOD8BnC/9jhYO39ZBXaHzxoGSGXEw3pJVfprEruf5VhB/eqGHNhLNZl+E=
+  secret_access_key: &2
+    secure: Bt+C6B7Ah5RVadjVEDbzPT5h9I87uLm6Ri8otWAoCKdPIM/Oh2yNiKEfOJAtrvMB4M3UXZlMDjmieDE1qGtO7wVnEqH03ZdcC6vh/4q5TrLViwfORNPKHU+nO8HOnXK5vPqZ3bknQvGdYtMMq4ZFsC6RnDSnW5FyZ5k2vK9FyVDWWTMBIL652g/kfaIDoqeGsFrrnDiETHYePT3F7/Z34DyhK2AkiG6EgCoq69dEGSMTxj8GxAU8YHbujJ68elakn38/BK4q5CMkFaDDjL/eJDtDmYdiUcKZvLuK/0cC1sgvohmBAyQyY98EfEGb1E/pXFSya1EgF2WFNuMUEH/qk/O2ifG5oNjitkZbcrx2OQdxpUnpLBFqSgWqCVp+nq0cc8fZ2ewFECoPxgYtAh4TZZ1hfq3rP50DVT6fRg+KuoAWM+VmC0AvD7m7Zx3DKmYwHcbZZzGOpJ7OeoYqLMwLgum6GH4+gQqGntXRBIdJdFXJDCg6zTEvpMlWXBf2qVJ552ut8XE8ahZ79BnXWKPK2M3htVVOvXtRHDVQ+vdvR/X1sIePil9ArchkioEJvuYnWnxUEa0aj0CSYh6Ok6quuzNWa+aO2OqCmKpEVt470l0+e8fXZKU9Y52WbSmJxBdtYmNJs0GjS5Otf+xCq7/Of3Nf80FFQFmUwUDVR+FTzcM=
+  local_dir: rdy4deploy_ref_manager
+  region: eu-west-1
+  skip_cleanup: true
+  bucket: refmanager-codedeploy
+  on: &3
+    branch: master
+- provider: codedeploy
+  access_key_id: *1
+  secret_access_key: *2
+  local_dir: rdy4deploy_ref_manager
+  region: eu-west-1
+  skip_cleanup: true
+  bucket: refmanager-codedeploy
+  on: &3
+    branch: master

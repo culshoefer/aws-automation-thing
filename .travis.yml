@@ -6,7 +6,7 @@ script: "./testbuild.sh"
 before_deploy: "./package.sh"
 deploy:
 - provider: script
-  region: eu-central-1
+  region: eu-west-1
   skip_cleanup: true
   on: &3
     branch: dev

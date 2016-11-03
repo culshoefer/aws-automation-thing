@@ -20,7 +20,11 @@ function virtualenv_dep_install {
 function virtualenv_install {
     echo "Installing virtualenv, it may ask for SUDO password"
     sudo pip install virtualenv
+    pip install --upgrade pip
 }
+
+yes yes | sudo apt-get update
+yes yes | sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib nginx systemd ufw
 
 if [ ! -z `which virtualenv` ]; then
     virtualenv_install
