@@ -16,8 +16,8 @@ before_deploy:
   - echo "Now adding remote"
   - yes yes | git remote add live ssh://ubuntu@ec2-54-229-70-158.eu-west-1.compute.amazonaws.com/home/ubuntu/repo/site.git
   - echo "Now pushing"
-  - eval `ssh-agent -s`
-  - echo -ne '\n' | echo | ssh-add ~/.ssh/deploy_key.pem
+  - eval $(ssh-agent -s)
+  - ssh-add ~/.ssh/deploy_key.pem
   - git push live master
 deploy:
   provider: script
