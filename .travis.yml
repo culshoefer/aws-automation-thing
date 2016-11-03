@@ -30,4 +30,3 @@ deploy:
   application: RefManager
   deployment_group: Staging
   region: eu-central-1
-  eTag: "222e72bae53411c41c8f177014660343-5"
