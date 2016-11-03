@@ -1,6 +1,8 @@
 language: python
 addons:
-  ssh_known_hosts: 54.229.70.158
+  ssh_known_hosts:
+    - 54.229.70.158
+    - ec2-54-229-70-158.eu-west-1.compute.amazonaws.com
 python:
 - '3.3'
 install: "./djangosetup.sh"
