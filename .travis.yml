@@ -5,7 +5,6 @@ install: "./djangosetup.sh"
 script: "./testbuild.sh"
 before_deploy:
   - "./package.sh"
-  - cd
   - ls
   - echo "Now running ssh agent"
   - eval "$(ssh-agent -s)"
