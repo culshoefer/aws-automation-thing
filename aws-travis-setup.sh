@@ -16,18 +16,6 @@ SERVICE_ROLE_ARN="$(aws iam get-role --role-name CodeDeployServiceRole --query "
 )"
 echo $SERVICE_ROLE_ARN
 
-function createLaunchConfiguration {
-    aws autoscaling create-launch-configuration --launch-configuration-name DefaultRefmanagerConf --image-id ami-f9619996
-}
-
-function createAutoScalingGroup {
-    SCALING_GROUP_NAME = $1
-    if [ -z "$SCALING_GROUP_NAME" ]; then
-	exit 1
-    fi
-    aws autoscaling create-auto-scaling-group --auto-scaling-group-name $SCALING_GROUP_NAME --min-size 1 --desired-capacity 2 --max-size 5 --launch-configuration-name DefaultRefmanagerConf
-}
-
 echo "Creating staging scaling group"
 createAutoScalingGroup Staging 
 
