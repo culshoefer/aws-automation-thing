@@ -12,7 +12,7 @@ before_deploy:
   - pip install fabric3 gitric
 deploy:
   provider: script
-  script: fab -H $DEPLOY_HOSTS -p $DEPLOY_PASS prod deploy_from_travis_cutover
+  script: fab -H $DEPLOY_HOSTS -p $DEPLOY_PASS
   skip_cleanup: true
   on:
     branch: dev
