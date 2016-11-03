@@ -12,3 +12,4 @@ echo "Now adding remote"
 git remote add live ssh://ubuntu@ec2-54-229-70-158.eu-west-1.compute.amazonaws.com/home/ubuntu/repo/site.git
 echo "Now pushing"
 git push live master
+exit 0
