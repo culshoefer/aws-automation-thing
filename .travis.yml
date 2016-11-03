@@ -13,13 +13,9 @@ before_deploy:
   - echo "Now adding remote"
   - yes yes | git remote add live ssh://ubuntu@ec2-54-229-70-158.eu-west-1.compute.amazonaws.com/home/ubuntu/repo/site.git
   - echo "Now pushing"
-  - SERVER_IP="54.229.70.158"
-  - echo "$SERVER_IP" > ~/.ssh/known_hosts
-  - echo " ssh-rsa " > ~/.ssh/known_hosts
-  - SERVER_RSA="$(ssh-keyscan -t rsa $SERVER_IP)"
-  - echo "$SERVER_RSA" >  ~/.ssh/known_hosts
-  - cat ~/.ssh/known_hosts
   - git push live master
+addons:
+  ssh_known_hosts: 54.229.70.158
 deploy:
   provider: script
   script: ./empty.sh
