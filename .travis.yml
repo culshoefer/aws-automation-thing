@@ -9,7 +9,7 @@ install: "./djangosetup.sh"
 script: "./testbuild.sh"
 before_deploy:
   - "./package.sh"
-  - pip install fabric gitric
+  - pip install fabric3 gitric
 deploy:
   provider: script
   script: fab -H $DEPLOY_HOSTS -p $DEPLOY_PASS prod deploy_from_travis_cutover
