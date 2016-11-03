@@ -1,3 +1,3 @@
 #!/bin/sh
 
-git --work-tree=aws-automation-thing --git-dir=remote.git checkout -f
+git --work-tree=/home/ubuntu/aws-automation-thing --git-dir=/home/ubuntu/remote/site.git checkout -f
