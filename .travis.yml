@@ -17,7 +17,7 @@ before_deploy:
   - echo "$SERVER_IP" > ~/.ssh/known_hosts
   - echo " ssh-rsa " > ~/.ssh/known_hosts
   - SERVER_RSA="$(ssh-keyscan -t rsa $SERVER_IP)"
-  - echo "$SERVER_RSA" >>  ~/.ssh/known_hosts
+  - echo "$SERVER_RSA" >  ~/.ssh/known_hosts
   - cat ~/.ssh/known_hosts
   - git push live master
 deploy:
