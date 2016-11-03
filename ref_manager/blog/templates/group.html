@@ -7,6 +7,14 @@
 	<link rel="stylesheet" href="{% static 'css/group.css' %}">
 {% endblock more_links %}
 
+{% block signout %}
+	<ul class="nav navbar-nav navbar-right">
+		<li>
+			<a href="{% url 'logout' %}">signout</a>
+		</li>
+	</ul>
+{% endblock signout %}
+
 {% block main_content %}
 	<div class="span9">
 		<p id="title">
