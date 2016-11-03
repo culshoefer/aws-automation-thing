@@ -1,3 +1,8 @@
 #!/bin/bash
 
-aws deploy create-deployment --application-name RefManager --s3-location bucket=refmanager-codedeploy,key=latest.zip,bundleType=zip,eTag="222e72bae53411c41c8f177014660343-5" --deployment-group-name Staging --description "Staging deploy from AWS CLI"
+eval "$(ssh-agent -s)"
+echo "$DEPLOY_KEY" > deploy_key.pem
+chmod 600 deploy_key.pem
+ssh-add deploy_key.pem
+git remote add deploy $REPO_URI
+git push deploy
