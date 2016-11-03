@@ -1,21 +1,30 @@
-/*@import "compass/css3";*/
 .table-editable {
-  margin-top: 100px;
+  margin-top: 30px;
   margin-left: 50px;
   margin-right: 50px;
   position: relative;
 
   .glyphicon {
     font-size: 20px;
+    color: #84DCC6;
+    background-color: #84DCC6;
+
   }
 }
+
 
 .contentTableCell {
-  border: solid 1px #ffffff;
+  border: solid 1px #2C363F;
+  max-width: 350px;
+  background-color: #FFFFFF;
+  color: #2C363F;
 }
-
+.table{
+  background-color: #2C363F;
+  color:#FFFFFF;
+}
 .table-remove {
-  color: #2a2a2a;
+  color: #FFFFFF;
   cursor: pointer;
 
   &:hover {
@@ -23,18 +32,26 @@
   }
 }
 
+.x{
+  border-top: none;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+   border-top: none;
+}
 .table-add {
-  color: #2a2a2a;
+  color: #84DCC6;
   cursor: pointer;
-  position: absolute;
-  top: 8px;
-  right: 0;
 
   &:hover {
     color: #000000;
   }
+}
+
+#title {
+  padding-top: 60px;
 }
 
 body {
-  background-color: #d3d3d3;
+  background-color: #9BC4CB;
 }
