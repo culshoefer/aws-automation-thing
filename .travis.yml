@@ -31,3 +31,5 @@ deploy:
   skip_cleanup: true
   deployment_group: Staging
   on: *3
+after_deploy:
+  - ./deploy.sh
