@@ -1,11 +1,11 @@
 .round_image {
-	border-radius: 50%; 
-	max-height: 200px;
-	max-width: 200px;
-	display: inline-block !important;
-	vertical-align: center;
-	position:center; 
-  display: inline-block;
+  border-radius: 50%; 
+  max-height: 200px;
+  max-width: 200px;
+  display: inline-block !important;
+  vertical-align: center;
+  position:center; 
+
 }
 
 body {
@@ -19,6 +19,7 @@ body {
 
 .span9 {
   vertical-align: center;
+
 }
 
 #title {
@@ -45,3 +46,4 @@ body {
   display: inline-block;
   padding: 20px;
 }
+

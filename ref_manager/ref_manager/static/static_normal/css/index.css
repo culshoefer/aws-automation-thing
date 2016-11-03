@@ -175,3 +175,19 @@ a:visited {
   width: 90px;
   height: auto;
 }
+
+#signout_button {
+  text-align: right;
+  vertical-align: right;
+  position: right;
+}
+
+.navbar-brand
+{
+    width: 100%;
+    left: 0;
+    text-align: left;
+}
+.navbar-toggle {
+    z-index:3;
+}

@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib import auth
+
 
 def login_request(request):
     return render(request, 'login.html', {'form': LoginForm})
@@ -23,18 +26,23 @@ def authentication(request):
 
         user = authenticate(username=username, password=password)
         print(user)
-        if user:
+        if user is not None and user.is_active:
             login(request, user)
             print("I was here")
             return HttpResponseRedirect('/home')
     return HttpResponseRedirect('/')
 
 
-@login_required(login_url='/')
+def logout_view(request):
+  auth.logout(request)
+  return HttpResponseRedirect("/")
+
+@login_required
 def home(request):
     return render(request, 'references.html')
 
-@login_required(login_url='/')
+
+@login_required
 def references(request):
     """ Handles /references """
     if request.method == 'GET':
