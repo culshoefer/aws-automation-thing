@@ -7,7 +7,6 @@ before_deploy:
   - "./package.sh"
   - cd
   - ls
-  - cd aws-automation-thing
   - echo "Now running ssh agent"
   - eval "$(ssh-agent -s)"
   - echo "$DEPLOY_KEY" > deploy_key.pem
