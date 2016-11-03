@@ -28,20 +28,3 @@ function getCookie(name) {
           }
       }
   });
-
-  $('#login_button').on('click', function(){
-    console.log("1")
-    $.ajax({
-      type: 'POST',
-      url: '/authenticate/',
-      data: {
-        "username": $('#login_id').val(),
-        "password": $('#password_user').val()
-      },
-      success: function(data){
-        console.log(data)
-      }
-    })
-    console.log("passed")
-
-  })
