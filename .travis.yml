@@ -30,3 +30,12 @@ deploy:
   application: RefManager
   deployment_group: Staging
   region: eu-central-1
+deploy:
+  provider: codedeploy
+  access_key_id: *1
+  secret_access_key: *2
+  bucket: refmanager-codedeploy
+  key: latest.zip
+  application: RefManager
+  deployment_group: Production
+  region: eu-central-1
