@@ -9,14 +9,9 @@ install: "./djangosetup.sh"
 script: "./testbuild.sh"
 before_deploy:
   - "./package.sh"
-  - ls
-  - echo "Now running ssh agent"
+  - pip install fabric
   - echo "$DEPLOY_KEY" >> ~/.ssh/deploy_key.pem
-  - chmod 600 ~/.ssh/deploy_key.pem
-  - echo "Now adding remote"
   - yes yes | git remote add live ssh://ubuntu@ec2-54-229-70-158.eu-west-1.compute.amazonaws.com/home/ubuntu/repo/site.git
-  - echo "Now pushing"
-  - git push live master --verbose
 deploy:
   provider: script
   script: ./empty.sh
