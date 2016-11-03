@@ -17,22 +17,17 @@ function virtualenv_dep_install {
     fi
 }
 
-function virtualenv_install {
-    echo "Installing virtualenv, it may ask for SUDO password"
-    sudo pip install virtualenv
-    pip install --upgrade pip
-}
 
 yes yes | sudo apt-get update
 yes yes | sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib nginx systemd ufw
 
-if [ ! -z `which virtualenv` ]; then
-    virtualenv_install
-fi
+pip install --upgrade pip
+pip install virtualenv
 
 virtualenv_dep_install
 echo "Now performing Django tasks"
 pwd
+ls
 source venv/bin/activate
 venv/bin/python manage.py makemigrations
 venv/bin/python manage.py migrate
