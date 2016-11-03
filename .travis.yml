@@ -21,15 +21,5 @@ deploy:
   bucket: refmanager-codedeploy
   on: &3
     branch: master
-- provider: codedeploy
-  access_key_id: *1
-  secret_access_key: *2
-  bucket: refmanager-codedeploy
-  key: latest.zip
-  bundle_type: zip
-  application: RefManager
-  skip_cleanup: true
-  deployment_group: Staging
-  on: *3
 after_deploy:
   - ./deploy.sh
