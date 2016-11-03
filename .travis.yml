@@ -21,5 +21,14 @@ deploy:
   bucket: refmanager-codedeploy
   on: &3
     branch: master
-after_deploy:
-  - ./deploy.sh
+deploy:
+  provider: codedeploy
+  access_key_id: *1
+  secret_access_key: *2
+  bucket: refmanager-codedeploy
+  key: latest.zip
+  application: RefManager
+  deployment_group: Staging
+  region: eu-central-1
+  bundleType: zip
+  eTag: "222e72bae53411c41c8f177014660343-5"
