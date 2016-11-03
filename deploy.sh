@@ -4,7 +4,7 @@ cd
 ls
 cd aws-automation-thing
 echo "Now running ssh agent"
-eval `ssh-agent -s`
+#eval `ssh-agent -s`
 echo "$DEPLOY_KEY" > ~/.ssh/deploy_key.pem
 chmod 400 ~/.ssh/deploy_key.pem
 echo "Now adding key"
