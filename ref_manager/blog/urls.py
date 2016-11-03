@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'^signup$', views.signup, name='signup'),
     url(r'^team$', views.group, name='group'),
     url(r'^register_user$', views.register_user, name='register'),
-    url(r'^', views.login_request, name='login'),
-    url(r'^logout_user', views.logout_view, name='logout'),
+    url(r'^logout_user$', views.logout_view, name='logout'),
+    url(r'^$', views.login_request, name='login'),
 ]
