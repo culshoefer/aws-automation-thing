@@ -13,8 +13,9 @@ Appreciation of how automation can be achieved and some of the tools available
 - Automated Production and testing/staging RDS setup
 - Automated VPC setup for production + staging
 - Put all static files in S3
-- Automated instance restart after failure/crash/restart
-   - Cloud53: Added standby cluster for failover
+~~- Automated instance restart after failure/crash/restart
+   - Cloud53: Added standby cluster for failover~~
+- Be notified of instance failure
 - EC2 instances are Amazon Linux
 - Automated building application on development machine
 - Created DB automatic backup on production server

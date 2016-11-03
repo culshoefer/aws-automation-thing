@@ -1,10 +1,31 @@
 language: python
 python:
-   - "2.7"
-   - "3.3"
-   - "3.4"
-   - "3.5"
-   - "3.5-dev"
-   - "3.6-dev"
-install: ./djangosetup.sh
-script: ./testbuild.sh
+- '2.7'
+- '3.3'
+- '3.4'
+- '3.5'
+- 3.5-dev
+- 3.6-dev
+install: "./djangosetup.sh"
+script: "./testbuild.sh"
+before_deploy: "./package.sh"
+deploy:
+- provider: s3
+  access_key_id: &1
+    secure: rQwT3wCa+iWT4zIu9zNFt1nEKcbObtECIjZ+4TsHEwXeLDgmpMK8EQN4fYFhnc6ER1D3KfiiBNnYOA6DNTU+ozB3aRy9f5uKT2KLzcS6hpPaCmcOO18oVsL5i/vs4QG45QoNLd7P54o4KWw1tvV7OzxQWfARw8hb+akgaSsCk6XzVkSbKDcss91LuBVrF++RmP2KffNQn08lHvdd0vQT14qzFaYpoA7g6+pLGsHyfjUy+HjDGhuHAczo9lfqfUYq9izsKyi/deuocRexpCfA11ZZr77r54H0EhToJIlPPAWmQSq5/eWurzUXGcjZpY6UiLsnscuaXd9xRBLejG50i1BqFpkhd2+A2TLBZ/MS/9EzzYHPxcq+uhQbWkAnMHb9vh3TwLwQsq3WRxF4WiFdVfppTJ4RrfIxlQkiKUIuvk8UVtg6TlWCrY+NKQ4dIR5EKjqMmYKyTl9cmKzJw0vFQBpB99/ck9uW+Apm8d/7Uzi5eyhlL7RUpN5wOnxgD4pKXeNdKhvC5zMKgz+9UkPkBY4tbcj3DMqjB0m2sDCj+Mr2aQ3SucUql6rziUgXBvocAy/q0s15QbuB7MsA1Slktuuq0BWx00d593e63jiuCsGnZLi5DBNZxgJz9sRtgg15xw3XXJHhWm7TCO9JPruiR13bjytG9j68on5rJBYGbzU=
+  secret_access_key: &2
+    secure: NnlyZ8m4DJWJr7qgZVN8EuMNKv3EFNJeAqFOara5vmG+O1ymDCazjhMVVv5YTbQlilru5xMKrq7vKPzwIGoQLfkGyq85M8MGhgkZZZcoq64/HkihsokOKJUp1juRBB1K9sqXfelBR9TVEvXo2vCeyteM1lKaxaSzh0NSypUyG76OmBIaLLcicp8uzTZJDpdjq07UD3TAB0sgSb4qw1GMs7K1X78fyAY7ZyMYVQaAD/hrkI2A1HqKe/TSOv8eL3C5jBg+9pZJZJZOsfaWM6qSblRJLlccKgXubazd76ay8hNur8LNfYFgASaPrtLJVim7rBAvg2Vye28owTEiNDI9NYJ0G3y9fjhlVB7JHc5W1ePq1Rymt4UJLsVGE5iDClFa8jfl0gwU2xGTgmM0wkJsyArCcIwbuPgtrtHEYPHmJhQK1e9jsqt0+jwkX+A+R1WomQuRUPn9QFgUjIpBytdP8mE63xM41memR3167CemuXTRNf4eVj960ICXE0MfAlvqYQwxLMwvNRdMoQ4wbXqOBoKz9X3lHiHdVCULeybPjuR8/r3QEmfUHDNKU7r6Rs01syUfTxvic8XmvHiCa4NL8b+91oAk12a58rU1zyCPsozPpYXzftuJx6sWMQo3cQZMZnjfrkMkv1plHk+368CByjdx/PbRtuTi0SUZIyFtsHE=
+  local_dir: rdy4deploy_ref_manager
+  region: eu-central-1
+  skip_cleanup: true
+  bucket: refmanager-codedeploy
+  on:
+    branch: master
+- provider: codedeploy
+  access_key_id: *1
+  secret_access_key: *2
+  bucket: refmanager-codedeploy
+  key: latest.zip
+  bundle_type: zip
+  application: RefManager
+  deployment_group: Staging
