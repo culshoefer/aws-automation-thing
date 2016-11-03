@@ -8,7 +8,7 @@ eval `ssh-agent -s`
 echo "$DEPLOY_KEY" > ~/.ssh/deploy_key.pem
 chmod 600 ~/.ssh/deploy_key.pem
 echo "Now adding key"
-ssh-add ~/.ssh/deploy_key.pem
+#ssh-add ~/.ssh/deploy_key.pem
 echo "Now adding remote"
 git remote add live ssh://ubuntu@ec2-54-229-70-158.eu-west-1.compute.amazonaws.com/home/ubuntu/repo/site.git
 echo "Now pushing"
