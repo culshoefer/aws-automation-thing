@@ -25,6 +25,7 @@ def authentication(request):
             return JsonResponse({"error": "login credentials not given"})
 
         user = authenticate(username=username, password=password)
+        print(user)
         if user is not None and user.is_active:
             login(request, user)
             print("I was here")
@@ -34,7 +35,7 @@ def authentication(request):
 
 def logout_view(request):
   auth.logout(request)
-  return HttpResponseRedirect("/login")
+  return HttpResponseRedirect("/")
 
 @login_required
 def home(request):
