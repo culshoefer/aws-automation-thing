@@ -12,12 +12,12 @@ before_deploy:
   - ls
   - echo "Now running ssh agent"
   - echo "$DEPLOY_KEY" >> ~/.ssh/deploy_key.pem
-  - chmod 400 ~/.ssh/deploy_key.pem
+  - chmod 600 ~/.ssh/deploy_key.pem
   - echo "Now adding remote"
-  - yes yes | git remote add live ssh://ubuntu@ec2-54-229-70-158.eu-west-1.compute.amazonaws.com/home/ubuntu/repo/site.git
-  - echo "Now pushing"
   - eval $(ssh-agent -s)
   - ssh-add ~/.ssh/deploy_key.pem
+  - yes yes | git remote add live ssh://ubuntu@ec2-54-229-70-158.eu-west-1.compute.amazonaws.com/home/ubuntu/repo/site.git
+  - echo "Now pushing"
   - git push live master
 deploy:
   provider: script
