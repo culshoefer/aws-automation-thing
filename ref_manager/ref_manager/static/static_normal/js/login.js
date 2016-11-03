@@ -28,24 +28,3 @@ function getCookie(name) {
           }
       }
   });
-
-  $('#login_button').on('click', function(){
-    console.log("1")
-    $.ajax({
-      type: 'POST',
-      url: '/authenticate/',
-      data: {
-        "username": $('#login_id').val(),
-        "password": $('#password_user').val()
-      },
-      success: function(data){
-        if (data.success == true){
-
-        } else {
-        	console.log('Check your username and password m8');
-        }
-      }
-    })
-    console.log("passed");
-
-  })
