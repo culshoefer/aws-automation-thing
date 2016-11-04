@@ -1,6 +1,7 @@
 from fabric.api import *
 import os
 
+ssh.util.log_to_file("paramiko.log", 10)
 env.hosts = ["54.229.146.21"]
 env.user = "ubuntu"
 env.key_filename = "./scenario.pem"
