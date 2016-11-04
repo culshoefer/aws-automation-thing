@@ -1,4 +1,9 @@
 ## Customize the test machine
+general:
+  branches:
+    only:
+     - dev
+
 machine:
   pre:
     - cd aws-automation-thing && ./djangosetup.sh
