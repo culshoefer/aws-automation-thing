@@ -55,3 +55,6 @@ class ReferenceTestCast(TestCase):
         response = self.client.delete('/references', data)
         ref = Reference.objects.all()
         self.assertEqual(len(ref), 0)
+
+    def test_failing_test(self):
+        self.assertEqual(0, 1)
