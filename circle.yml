@@ -1,0 +1,21 @@
+## Customize the test machine
+machine:
+  pre:
+    - cd aws-automation-thing && ./djangosetup.sh
+  environment:
+    IS_TRAVIS: true
+
+test:
+  override:
+    - ls
+    - cd ref_manager
+    - cd ref_manager && pip install -r requirements.txt
+    - cd ref_manager && python manage.py test
+
+## Customize deployment commands
+deployment:
+  staging:
+    branch: dev
+    commands:
+      - ls
+      - fab deploy
