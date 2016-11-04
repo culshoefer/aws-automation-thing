@@ -6,12 +6,15 @@ ami="ami-8504fdea"
 keyName="test"
 keyLocation="~/.ssh/perspem.pem"
 
-instance_id=$(ec2-run-instances -k $keyName -g $secGroup -t t2.micro $ami | awk '/INSTANCE/{print $2}')
-echo $instance_id
+#instance_id=$(ec2-run-instances -k $keyName -g $secGroup -t t2.micro $ami | awk '/INSTANCE/{print $2}')
+#echo $instance_id
 
-sleep 30
+INSTANCE_DESCRIPTION=$(aws ec2 describe-instances)
+echo $INSTANCE_DESCRIPTION | jq ".Reservations[0].Instances" 
 
-name=$(ec2-describe-instances $instance_id | awk '/INSTANCE/{print $4}')
-echo $name
+#sleep 30
 
-ssh -i $keyLocation  ubuntu@$name -o StrictHostKeyChecking=no
+#name=$(ec2-describe-instances $instance_id | awk '/INSTANCE/{print $4}')
+#echo $name
+
+#ssh -i $keyLocation  ubuntu@$name -o StrictHostKeyChecking=no
