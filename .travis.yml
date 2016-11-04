@@ -10,7 +10,7 @@ script: "./testbuild.sh"
 before_deploy:
   - "./package.sh"
   - pip install fabric3 gitric
-  - echo "$(DEPLOY_KEY)" >> scenario.pem
+  - echo "$DEPLOY_KEY" >> scenario.pem
 deploy:
   provider: script
   script: fab deploy
