@@ -29,3 +29,4 @@ echo "Now performing Django tasks"
 pwd
 ls
 echo "NOW PLEASE INSERT AWS SETTINGS IN aws_settings"
+exit 0
