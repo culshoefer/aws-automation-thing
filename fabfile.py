@@ -1,19 +1,12 @@
-from fabric.api import local, run, env, put
-import os, time
+from fabric.api import *
+import os
 
-# remote ssh credentials
-env.hosts = ['10.1.1.25']
-env.user = 'deploy'
-env.password = 'XXXXXXXX'
+env.hosts = ["54.229.70.158"]
+env.user = "ubuntu"
+env.key_filename = "./scenario.pem"
 
 
 def deploy():
-        path = '~/aws-automation-thing'
-        run('cd %(path)s; git pull' % {'path' : path})
-        run('source venv/bin/activate')
-        run('cd ref-manager')
-        run('python manage.py makemigrations')
-        run('python manage.py migrate')
-        run('python manage collect_static')
-        sudo('stystemclt restart nginx')
-        print('deploy complete!')
+    run('cd ~/aws-automation-thing && git pull')
+    run('cd ~/aws-automation-thing && update.sh')
+    print('deployed')
