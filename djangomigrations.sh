@@ -1,9 +1,9 @@
 #!/bin/bash
 
 cd ref_manager
-source venv/bin/activate
-venv/bin/python manage.py makemigrations
-venv/bin/python manage.py migrate
-yes yes | venv/bin/python manage.py collectstatic
+source env/bin/activate
+env/bin/python manage.py makemigrations
+env/bin/python manage.py migrate
+yes yes | env/bin/python manage.py collectstatic
 deactivate
 exit 0

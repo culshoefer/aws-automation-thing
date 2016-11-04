@@ -1,10 +1,11 @@
 #!/bin/bash
 
-source /venv/bin/activate
+source /env/bin/activate
 cd ref_manager
 pip install --upgrade pip
 python manage.py makemigrations
 python manage.py migrate
 yes yes | python manage.py collectstatic
 sudo systemctl restart nginx
+deactivate
 exit 0
