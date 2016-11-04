@@ -12,5 +12,6 @@ env.key_filename = "./scenario.pem"
 
 def deploy():
     run('cd /home/ubuntu/aws-automation-thing && git pull')
+    run('cd /home/ubuntu/aws-automation-thing && git status')
     run('cd /home/ubuntu/aws-automation-thing && ./update.sh')
     print('deployed')
