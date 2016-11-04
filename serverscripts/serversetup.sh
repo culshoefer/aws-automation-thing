@@ -14,3 +14,4 @@ sudo cp srvr_conffiles/nginx_ref_manager /etc/nginx/sites-available/ref_manager
 sudo ln -s /etc/nginx/sites-available/ref_manager /etc/nginx/sites-enabled
 sudo systemctl restart nginx
 sudo ufw allow 'Nginx Full'
+exit 0
