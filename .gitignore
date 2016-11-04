@@ -2,7 +2,7 @@
 rdy4deploy_ref_manager/
 ref_manager/ref_manager/
 codedeployrole.json
-
+scenario.pem
 # Virtual environment
 ref_manager/venv/
 aws_settings.py

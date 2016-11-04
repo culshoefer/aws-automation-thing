@@ -10,9 +10,10 @@ script: "./testbuild.sh"
 before_deploy:
   - "./package.sh"
   - pip install fabric3 gitric
+  - echo "$(DEPLOY_KEY)" >> scenario.pem
 deploy:
   provider: script
-  script: fab -H $DEPLOY_HOSTS -p $DEPLOY_PASS
+  script: fab deploy
   skip_cleanup: true
   on:
     branch: dev
