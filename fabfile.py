@@ -7,6 +7,7 @@ logging.basicConfig(level=logging.DEBUG)
 env.hosts = ["54.229.146.21"]
 env.user = "ubuntu"
 env.key_filename = "./scenario.pem"
+env.password = ""
 
 # def setup():
 #     run('cd /home/ubuntu/aws-automatic-thing && ./djangosetup.sh')
