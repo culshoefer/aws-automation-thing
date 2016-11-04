@@ -12,6 +12,7 @@
     	<link rel="stylesheet" href="{% static 'css/index.css' %}">
     	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     	<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
+    	<link rel="stylesheet" type="text/css" href="{% static 'css/sweetalert.css' %}">
 
     	{% block more_links %}{% endblock %}
 	</head>
@@ -48,6 +49,7 @@
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	    <script src="{% static 'js/sweetalert.min.js' %}"></script>
 	    {% block more_scripts %}{% endblock %}
 
 	</body>

@@ -21,7 +21,9 @@ $('#signup-btn').on('click', function(e){
         } else {
           window.onerror = function(msg, url, line, col, error) {
              alert("Error: " + msg + "\nurl: " + url + "\nline: " + line);
+
           };
+          sweetAlert("Oops...", "Username or Email already taken!", "error");
         }
       },
       error: function(data){
