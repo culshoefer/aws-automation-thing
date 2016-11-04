@@ -13,7 +13,7 @@ before_deploy:
   - echo "$DEPLOY_KEY" >> scenario.pem
 deploy:
   provider: script
-  script: fab deploy
+  script: fab deploy -p ""
   skip_cleanup: true
   on:
     branch: dev
