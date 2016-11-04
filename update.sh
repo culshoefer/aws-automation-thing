@@ -1,7 +1,9 @@
 #!/bin/bash
 
 source ../env/bin/activate
-cd aws-automation-thing/ref_manager
+pwd
+cd ref_manager
+pwd
 pip install --upgrade pip
 python manage.py makemigrations
 python manage.py migrate

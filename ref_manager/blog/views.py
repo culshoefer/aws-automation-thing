@@ -169,4 +169,3 @@ def register_user(request):
         print("error")
         return JsonResponse({"success": False})
     return JsonResponse({"success": True})
-
