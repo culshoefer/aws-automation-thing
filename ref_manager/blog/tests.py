@@ -27,6 +27,9 @@ class ReferenceTestCast(TestCase):
 
         self.test_ref.save()
 
+    def test_failing_test(self):
+        self.assertEqual(True, False)
+        
     def test_get_references(self):
         """Checking the GET Request"""
         response = self.client.get('/references', {"refid": self.test_ref.id})
